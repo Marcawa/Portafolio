@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos Romero - Portafolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+/*--------------------------------------------CONFIGURCION---------------------------------------------------------------*/
+:root {
+    /* Paleta base */
+    --color-bg-dark: #1a1a1a;         /* Fondo general */
+    --color-bg-alt: #2c2c2c;          /* Fondo secundario */
+    --color-border-dark: #0f3d0f;     /* Bordes verdes oscuros */
+    --color-border-gray: #3a3a3a;     /* Bordes grises */
+    --color-primary: #4CAF50;         /* Verde principal */
+    --color-text: #f0f0f0;            /* Texto claro */
+    --color-placeholder: #b0b0b0;     /* Texto placeholder */
+
+
+    --navbar-logo-space: 100px;  /* 🔹 Espacio izquierdo del logo */
+    --navbar-button-space: 100px; /* 🔹 Espacio derecho del botón */
+}
+
+body {
+    background-color: var(--color-bg-dark); /* Fondo oscuro casi negro */
+    color: var(--color-text); /* Color de texto general */
+    font-family: Arial, sans-serif;
+}
+
+/*--------------------------------------------NAVBAR---------------------------------------------------------------*/
+
+.navbar {
+    background-color: var(--color-bg-dark) !important; /* Navbar muy oscuro */
+    border-bottom: 1px solid var(--color-border-dark); /* Borde inferior verde */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navbar-brand {
+    color: var(--color-text) !important;
+    margin-left: var(--navbar-logo-space, 50px);
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-text) !important;
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--color-primary) !important; /* Verde más brillante al pasar el ratón o activo */
+}
+
+.logo-navbar {
+    height: 80px; /* Ajusta el alto del logo */
+    width: auto; /* Mantiene las proporciones originales */
+    object-fit: contain; /* Asegura que no se deforme */
+    vertical-align: middle; /* Centra con el texto */
+    /* 🔹 Ajustes adicionales para responsividad y control de tamaño */
+    max-height: none; /* Límite máximo para pantallas grandes */
+    max-width: 100%; /* Evita que se salga del contenedor */
+    transition: height 0.3s ease; /* Transición suave si cambias el tamaño */
+}
+
+/* 🔹 Distribución general: logo izquierda, menú centro, botón derecha 
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}*/
+
+/* 🔹 Elimina el padding lateral del container para permitir al logo y botón llegar a los bordes */
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var(--navbar-logo-space, 0px);
+    padding-right: var(--navbar-button-space, 0px);
+}
+
+/* 🔹 Centrar el menú dentro del espacio disponible */
+.navbar-collapse {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+/* 🔹 Contenedor del botón a la derecha */
+.navbar-right {
+    margin-right: var(--navbar-button-space, 50px); /* Espacio derecho ajustable */
+}
+
+/* 🔹 Espaciado ajustable del botón hamburguesa en pantallas pequeñas */
+.navbar-toggler {
+    margin-right: var(--navbar-button-space, 50px); /* Espacio derecho ajustable */
+}
+
+
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 35px; /* Tamaño ligeramente menor en pantallas pequeñas */
+    }
+}
+
+/*--------------------------------------------BODY---------------------------------------------------------------*/
+.hero-section {
+    background-color: var(--color-bg-dark);
+    border-bottom: 2px solid var(--color-border-dark);
+    padding-top: 120px  !important; /* Espacio para el navbar fijo */
+    padding-bottom: 120px  !important;
+    background-image:url("Fondo.png");
+    background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que se repita */
+}
+
+
+.profile-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: var(--color-primary); /* Círculo verde detrás de la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    border: 3px solid var(--color-border-dark); /* Borde más oscuro */
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); /* Sombra verde */
+}
+
+
+.profile-circle img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-bg-dark); /* Borde oscuro para la imagen */
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+
+.lead {
+    color: var(--color-text);
+}
+
+.text-success {
+    color: var(--color-primary) !important; /* Verde principal */
+}
+
+.btn-success {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 5px;
+}
+
+.btn-success:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.btn-outline-success {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .profile-circle {
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile-circle img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/*Sobre mi*/
+.section-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.bg-dark-alt {
+    background-color: var(--color-bg-alt) !important; /* Un gris oscuro para tarjetas */
+    border: 1px solid var(color-border-gray);
+    border-radius: 8px;
+}
+
+.quote {
+    font-style: italic;
+    font-weight: 500;
+    border-left: 5px solid var(--color-primary);
+    padding-left: 15px;
+    margin-top: 30px;
+}
+
+/* Skills Section */
+.skill-item {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-item i {
+    margin-bottom: 5px;
+    color: var(--color-primary); /* Iconos de habilidades en verde */
+}
+
+.skill-item p {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+/* Cards de experiencia/sectores */
+.card-body i {
+    color: var(--color-primary);
+}
+
+/* Education Timeline */
+.timeline {
+    position: relative;
+    padding: 0 0 0 20px; /* Ajuste para la línea */
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: var(--color-primary);
+    z-index: 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px; /* Ajuste para el punto en la línea */
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-bg-dark);
+    z-index: 1;
+}
+
+.timeline-item .card {
+    background-color: var(--color-bg-alt) !important;
+    border: 1px solid var(color-border-gray);
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: 10px; /* Separación de la línea */
+}
+
+.timeline-item .card h5 {
+    font-weight: bold;
+}
+
+/* Contact Form */
+.form-control {
+    background-color: var(--color-bg-alt) !important;
+    border: 1px solid var(color-border-gray) !important;
+    color: var(--color-text) !important;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.form-control::placeholder {
+    color: var(--color-placeholder);
+}
+
+/*--------------------------------------------FOOTER---------------------------------------------------------------*/
+/* Footer */
+footer {
+    background-color: var(--color-bg-dark) !important;
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+
+footer img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
+
+.footer-links p {
+    margin-bottom: 8px;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">  
+    <div class="container-fluid px-0">
+
+        <!-- 🔹 IZQUIERDA: LOGO -->
+        <a class="navbar-brand" href="#">
+            <img src="Logo.png" alt="Logo" class="logo-navbar d-inline-block align-text-top me-2">
+        </a>
+
+        <!-- 🔹 BOTÓN HAMBURGUESA -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 🔹 CENTRO: MENÚ -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+                <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+                <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+            </ul>
+
+            <!-- 🔹 BOTÓN PERFIL SOLO PARA MÓVIL -->
+            <div class="navbar-right d-lg-none mt-3 text-center">
+                <button class="btn btn-success w-75">
+                    <i class="fas fa-user me-1"></i> Mi Perfil
+                </button>
+            </div>
+        </div>
+
+        <!-- 🔹 BOTÓN PERFIL SOLO PARA ESCRITORIO -->
+        <div class="navbar-right d-none d-lg-block">
+            <button class="btn btn-success">
+                <i class="fas fa-user me-1"></i> Mi Perfil
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+    <main class="container-fluid py-5">
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section text-center py-5 mb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Columna izquierda -->
+                    <div class="col-md-5 mb-4 mb-md-0 text-center text-md-start">
+                        <div class="profile-circle mx-auto mx-md-0 mb-3">
+                            <img src="Marc.jpg" alt="Marcos Romero" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="social-icons">
+                            <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-github"></i></a>
+                            <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn btn-outline-success"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div class="col-md-7 text-center text-md-start">
+                        <h1 class="text-white">Marcos Romero</h1>
+                        <p class="lead text-success mb-4">
+                            <i class="fas fa-code text-success me-2"></i> Desarrollador líder en soluciones
+                            <span class="text-white">ágiles, mediante código directo y desde frameworks.</span>
+                        </p>
+                        <button class="btn btn-lg btn-success">
+                            <i class="fas fa-download me-2"></i>Descargar CV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="container">
+            <div class="row">
+                <!-- About Me Section --><section id="sobre-mi" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">
+                        <i class="fas fa-user-circle me-2"></i>Sobre Mí
+                    </h2>
+                    <p class="text-light mb-3">
+                        El desarrollo de software es mi constante y apasionado día a día. Mediante el código logro darle forma a ideas complejas, creando soluciones funcionales e impactantes.
+                    </p>
+                    <p class="quote text-success fs-4">
+                        "Cada línea el código es<br>oportunidad para innovar."
+                    </p>
+                </section>
+
+                <!-- Skills Section --><section id="habilidades" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">Habilidades</h2>
+
+                    <h3 class="text-white mb-3"><i class="fas fa-cogs me-2"></i>Frameworks y Herramientas</h3>
+                    <div class="row text-center mb-4">
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-html5 fa-2x text-white"></i>
+                            <p class="text-secondary">HTML5</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-css3-alt fa-2x text-white"></i>
+                            <p class="text-secondary">CSS3</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-js fa-2x text-white"></i>
+                            <p class="text-secondary">JavaScript</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-bootstrap fa-2x text-white"></i>
+                            <p class="text-secondary">Bootstrap</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-react fa-2x text-white"></i>
+                            <p class="text-secondary">React</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-angular fa-2x text-white"></i>
+                            <p class="text-secondary">Angular</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-node-js fa-2x text-white"></i>
+                            <p class="text-secondary">Node.js</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-python fa-2x text-white"></i>
+                            <p class="text-secondary">Python</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-white mb-3"><i class="fas fa-database me-2"></i>Bases de Datos</h3>
+                    <div class="row text-center mb-4">
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fas fa-database fa-2x text-white"></i>
+                            <p class="text-secondary">SQL</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fas fa-leaf fa-2x text-white"></i>
+                            <p class="text-secondary">MongoDB</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fas fa-server fa-2x text-white"></i>
+                            <p class="text-secondary">PostgreSQL</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-white mb-3"><i class="fas fa-briefcase me-2"></i>Sectores de Experiencia</h3>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-balance-scale fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Sistema Judicial</p>
+                                <small class="text-secondary">Desarrollo de herramientas legales.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-hospital fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Hospital</p>
+                                <small class="text-secondary">Gestión de sistemas de salud.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-plane fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Aerolíneas</p>
+                                <small class="text-secondary">Sistemas de reserva y logística.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-building fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Empresarial</p>
+                                <small class="text-secondary">Soluciones de gestión empresarial.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-hotel fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Hotelería</p>
+                                <small class="text-secondary">Plataformas de gestión hotelera.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-car fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Automotriz</p>
+                                <small class="text-secondary">Sistemas de concesionarios y ventas.</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="row">
+                <!-- Education Section --><section id="educacion" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">
+                        <i class="fas fa-graduation-cap me-2"></i>Educación
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item mb-4">
+                            <div class="card bg-dark-alt p-3">
+                                <h5 class="text-white mb-1">Tecnología Universitaria Unifranz Sucre</h5>
+                                <p class="text-success mb-1">Tecnólogo Superior en Desarrollo de Software</p>
+                                <p class="text-secondary mb-0">2017 - 2020</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-4">
+                            <div class="card bg-dark-alt p-3">
+                                <h5 class="text-white mb-1">Tecnología Universitaria Unifranz Sucre</h5>
+                                <p class="text-success mb-1">Tecnólogo Superior en Desarrollo de Software</p>
+                                <p class="text-secondary mb-0">2021 - 2023</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="card bg-dark-alt p-3">
+                                <h5 class="text-white mb-1">Colegio Militar Teófilo Núñez Ortiz</h5>
+                                <p class="text-success mb-1">Bachillerato en Ciencias</p>
+                                <p class="text-secondary mb-0">2010 - 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section --><section id="contacto" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">
+                        <i class="fas fa-envelope me-2"></i>Es Contacto
+                    </h2>
+                    <p class="text-light mb-4">¿Tienes alguna propuesta o proyecto en mente?</p>
+
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control bg-dark-alt text-white border-0" placeholder="Nombre">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control bg-dark-alt text-white border-0" placeholder="Correo electrónico">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control bg-dark-alt text-white border-0" rows="5" placeholder="Mensaje"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100">Enviar Mensaje</button>
+                    </form>
+
+                    <div class="social-icons mt-4 text-center">
+                        <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-outline-success"><i class="fab fa-github"></i></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-center py-4 mt-5">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+                <img src="https://via.placeholder.com/50" alt="Marcos Romero" class="img-fluid rounded-circle me-3">
+                <div>
+                    <h5 class="text-white mb-0">Marcos Romero</h5>
+                    <p class="text-success mb-0">Transformando ideas en soluciones tecnológicas.</p>
+                </div>
+            </div>
+            <div class="footer-links mb-3">
+                <p class="text-white mb-1"><i class="fas fa-envelope me-2"></i>marcosdev@gmail.com</p>
+                <p class="text-white mb-1"><i class="fab fa-github me-2"></i>github.com/usuario</p>
+                <p class="text-white mb-0"><i class="fab fa-linkedin-in me-2"></i>linkedin.com/in/usuario</p>
+            </div>
+            <p class="text-secondary small mt-3">
+                © 2023 Marcos Romero - Todos con la pasión y dedicación por Marcos Romero.
+                <br>
+                <span>SUMPOSICIÓN FINAL</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
