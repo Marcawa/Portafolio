@@ -172,7 +172,7 @@ a {
 
 /* Espacio dinámico para que el contenido de la web no se esconda detrás */
 .header-spacer {
-    height: 79px; 
+    height: 130px; 
 }
 
 .nav-toggle {
@@ -203,12 +203,16 @@ main {
    ========================================================================== */
 .hero-section {
     width: 100%; /* 🟢 Crucial: Ahora sí puede tocar los bordes de la pantalla */
-    min-height: calc(100vh - 79px); /* Ocupa el resto de la pantalla completa */
+    /* min-height: calc(100vh - 79px); Ocupa el resto de la pantalla completa */
+    min-height: calc(60vh); /* Altura base inicial más moderada */
+    max-height: 700px;      /* 🎯 CAP DE SEGURIDAD: Impide que en "vista de computadora" de celular se estire un abismo */
+
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding: 6rem 2rem; Relleno elegante para dar aire al contenido */
-    padding: 2rem;
+    /* padding: 6rem 2rem; Relleno elegante para dar aire al contenido 
+    padding: 4rem 2rem;*/
+    padding: 5rem 2rem 3rem 2rem;
     
     /* 🟢 SOLUCIÓN ESTRICTA: Capa oscura + Imagen separadas por coma sin interrupciones */
     background-image: linear-gradient(rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0.45)), 
@@ -226,6 +230,9 @@ main {
     max-width: 1200px;
     width: 100%;
     gap: 4rem;
+    /* 3. ESCUDO PROTECTOR: Si la pantalla se vuelve muy pequeña en altura, 
+       impedimos que el contenedor suba e invada el Navbar */
+    margin-top: 0;
 }
 
 /* --- Bloque Izquierdo: Avatar --- */
@@ -371,7 +378,8 @@ main {
 .dashboard-grid {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    /*padding: 4rem 2rem;*/
+    padding: 1rem 2rem 4rem 2rem;
     
     display: grid;
     /* Dividimos la pantalla en 2 columnas gigantes idénticas (50% y 50%) */
