@@ -204,15 +204,17 @@ main {
 .hero-section {
     width: 100%; /* 🟢 Crucial: Ahora sí puede tocar los bordes de la pantalla */
     /* min-height: calc(100vh - 79px); Ocupa el resto de la pantalla completa */
-    min-height: calc(60vh); /* Altura base inicial más moderada */
-    max-height: 700px;      /* 🎯 CAP DE SEGURIDAD: Impide que en "vista de computadora" de celular se estire un abismo */
+
+    /* 🎯 CAMBIO CLAVE: Volvemos a la pantalla completa limpia para PC.
+       Esto centra perfectamente tu avatar y textos verticalmente en cualquier monitor */
+    min-height: calc(100vh - 79px); 
+    max-height: none; /* Eliminamos este tope en PC para que no aplaste el contenido */
 
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding: 6rem 2rem; Relleno elegante para dar aire al contenido 
-    padding: 4rem 2rem;*/
-    padding: 5rem 2rem 3rem 2rem;
+    /* padding: 6rem 2rem; Relleno elegante para dar aire al contenido */
+    padding: 4rem 2rem;
     
     /* 🟢 SOLUCIÓN ESTRICTA: Capa oscura + Imagen separadas por coma sin interrupciones */
     background-image: linear-gradient(rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0.45)), 
