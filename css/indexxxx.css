@@ -1,23 +1,23 @@
 /*--------------------------------------------CONFIGURCION---------------------------------------------------------------*/
 :root {
-    /* Paleta base */
-    /*--color-bg-dark: #1a1a1a;          Fondo general */
-    /*--color-bg-alt: #2c2c2c;           Fondo secundario */
-    /*--color-border-dark: #0f3d0f;      Bordes verdes oscuros */
-    /*--color-border-gray: #3a3a3a;      Bordes grises */
-    /*--color-primary: #4CAF50;          Verde principal */
-    /*--color-text: #f0f0f0;             Texto claro */
-    /*--color-placeholder: #b0b0b0;      Texto placeholder */
+    /* 🔹 Paleta base DESCOMENTADA para que funcione en todo el documento */
+    --color-bg-dark: #1a1a1a;         /* Fondo general */
+    --color-bg-alt: #2c2c2c;          /* Fondo secundario */
+    --color-border-dark: #0f3d0f;      /* Bordes verdes oscuros */
+    --color-border-gray: #3a3a3a;      /* Bordes grises */
+    --color-primary: #4CAF50;          /* Verde principal */
+    --color-text: #f0f0f0;             /* Texto claro */
+    --color-placeholder: #b0b0b0;      /* Texto placeholder */
 
     /* Colores de la paleta de la imagen */
-    --color-negro-profundo: #1A1A1A;    /* Negro Profundo / Carbón */
-    --color-verde-neon: #00FF66;        /* Verde Neón / Ciber-Vree Vibrante */
-    --color-cian-turquesa: #00FFFF;     /* Cian Turquesa Vibrante (NOTA: #00FFRV no es un código hex válido, asumo que 'RV' es un error tipográfico y debería ser otro valor o simplemente 00FF00) */
-    --color-magenta-brillante: #FF00FF; /* Magenta Brillante */
-    --color-blanco-puro: #FFFF;         /* Blanco Puro (NOTA: #FFFF es un shorthand, el completo sería #FFFFFF) */
+    --color-negro-profundo: #1A1A1A;    
+    --color-verde-neon: #00FF66;        
+    --color-cian-turquesa: #00FFFF;     
+    --color-magenta-brillante: #FF00FF; 
+    --color-blanco-puro: #FFFFFF;        
 
-    --navbar-logo-space: 100px;  /* 🔹 Espacio izquierdo del logo */
-    --navbar-button-space: 100px; /* 🔹 Espacio derecho del botón */
+    --navbar-logo-space: 100px;  
+    --navbar-button-space: 100px; 
 }
 
 body {
@@ -169,12 +169,16 @@ strong {
 .hero-section {
     background-color: var(--color-bg-dark);
     border-bottom: 2px solid var(--color-border-dark);
-    padding-top: 120px  !important;  /*Espacio para el navbar fijo */
-    padding-bottom: 120px  !important;
-    background-image:url("Fondo.jpg");
-    background-size: contain; /* Ajusta la imagen al tamaño del contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que se repita */
+    padding-top: 120px !important;  
+    padding-bottom: 120px !important;
+    
+    /* Ruta correcta desde la carpeta CSS hacia la carpeta IMG */
+    background-image: url("../img/Fondo.jpg");
+    
+    /* Cambiado a cover para que llene todo el contenedor del Hero */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
 
 
@@ -278,7 +282,7 @@ strong {
 
 .bg-dark-alt {
     background-color: var(--color-bg-alt) !important; /* Un gris oscuro para tarjetas */
-    border: 1px solid var(color-border-gray);
+    border: 1px solid var(--color-border-gray);
     border-radius: 8px;
 }
 
@@ -351,7 +355,7 @@ strong {
 
 .timeline-item .card {
     background-color: var(--color-bg-alt) !important;
-    border: 1px solid var(color-border-gray);
+    border: 1px solid var(--color-border-gray);
     border-radius: 8px;
     padding: 15px;
     margin-left: 10px; /* Separación de la línea */
