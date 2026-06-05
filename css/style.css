@@ -1,0 +1,806 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN GLOBAL Y VARIABLES
+   ========================================================================== */
+:root {
+    /* Paleta: Código Nocturno y Chispa Digital V3 */
+    --clr-bg-deep: #1A1A1A;      /* Negro Profundo */
+    --clr-neon-green: #00FF66;   /* Verde Neón */
+    --clr-cyan-tech: #00FFFF;    /* Cian Turquesa */
+    --clr-magenta-bold: #FF00FF; /* Magenta */
+    --clr-white: #FFFFFF;        /* Blanco */
+
+    --font-main: Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--font-main);
+    background-color: var(--clr-bg-deep);
+    color: var(--clr-white);
+}
+
+/* Resets básicos para que los links no tengan la línea subrayada abajo */
+a {
+    text-decoration: none;
+}
+
+
+/* ==========================================================================
+   2. NAVBAR Y MENÚ DESPLEGABLE (Responsive y con Estados de Color Controlados)
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--clr-bg-deep);
+    border-bottom: 2px solid rgba(0, 255, 102, 0.2); /* Línea verde sutil de separación */
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    gap: 1rem;
+}
+
+.nav-logo img {
+    /* 🟢 LOGO FLUIDO E INTELIGENTE */
+    width: 12vw;            /* El logo ocupará el 12% del ancho de la pantalla actual */
+    min-width: 120px;       /* En pantallas muy pequeñas (celulares), no se encogerá menos de 120px para que no se rompa */
+    max-width: 140px;       /* En pantallas gigantes de escritorio, no crecerá más de 180px para no comerse el menú */
+    height: auto;           /* La altura se calcula sola para que el logo no se deforme ni se vea estirado */
+    display: block;
+    transition: width 0.2s ease; /* Suaviza el cambio de tamaño si arrastras la ventana del navegador */
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+/* 🟢 SOLUCIÓN ESTRICTA DE COLOR: Controlamos el estado normal y visitado SOLO del menú */
+.nav-link:link, 
+.nav-link:visited {
+    color: var(--clr-white); /* Siempre blancos de base, aunque ya se haya hecho clic */
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    transition: color 0.2s ease;
+}
+
+/* 🟢 HOVER Y ACTIVO: Ahora sí cambian correctamente al VERDE NEÓN */
+.nav-link:hover, 
+.nav-link.active {
+    color: var(--clr-neon-green) !important;
+}
+
+/* --- Estructura del Desplegable (Dropdown) --- */
+.dropdown {
+    position: relative;
+}
+
+.text-small {
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    color: var(--clr-cyan-tech); /* El cian para el icono de la flecha */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.8rem); /* 🟢 NUEVO: Separa el submenú de forma elegante hacia abajo */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222222; /* Fondo gris oscuro para contraste */
+    border: 1px solid var(--clr-cyan-tech); /* Borde tecnológico Cian */
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 220px;
+    display: none; /* Oculto por defecto */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    list-style: none;
+}
+
+/* 🟢 PUENTE INVISIBLE: Evita que el submenú se cierre por el espacio de aire creado */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -1rem; /* Cubre exactamente el vacío superior hacia arriba */
+    left: 0;
+    width: 100%;
+    height: 1rem; /* Misma altura que la separación para no perder el foco */
+}
+
+/* Enlaces internos del desplegable (Proyectos individuales) */
+.dropdown-item:link, 
+.dropdown-item:visited {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    color: var(--clr-white); /* Texto blanco base */
+    transition: all 0.3s ease;
+}
+
+/* 🟢 HOVER PROYECTOS: Al pasar el mouse por un proyecto cambia a MAGENTA BRILLANTE */
+.dropdown-item:hover {
+    background-color: var(--clr-bg-deep);
+    color: var(--clr-magenta-bold) !important; 
+    padding-left: 1.5rem; /* Efecto dinámico de desplazamiento */
+}
+
+/* Muestra el menú cuando el mouse se posiciona sobre la lista de Proyectos */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* --- Botón de Acción Directa (WhatsApp) --- */
+.btn-nav:link, 
+.btn-nav:visited {
+    color: var(--clr-neon-green);
+    border: 2px solid var(--clr-neon-green);
+    background-color: transparent;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    background-color: var(--clr-neon-green);
+    color: var(--clr-bg-deep) !important; /* Texto oscuro para contrastar con el fondo verde neón */
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+}
+
+/* Espacio dinámico para que el contenido de la web no se esconda detrás */
+.header-spacer {
+    height: 79px; 
+}
+
+.nav-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    color: var(--clr-neon-green);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1100;
+}
+
+/* Ocultamos el botón móvil en la versión de escritorio */
+#nav-action-mobile {
+    display: none;
+}
+
+
+main {
+    width: 100%; /* Permite que el contenido principal ocupe todo el ancho de la pantalla */
+    background-color: var(--clr-bg-deep); /* Asegura el fondo oscuro base */
+}
+
+
+/* ==========================================================================
+   3. SECCIÓN PRINCIPAL (Hero Section - Escritorio)
+   ========================================================================== */
+.hero-section {
+    width: 100%; /* 🟢 Crucial: Ahora sí puede tocar los bordes de la pantalla */
+    min-height: calc(100vh - 79px); /* Ocupa el resto de la pantalla completa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 6rem 2rem; Relleno elegante para dar aire al contenido */
+    padding: 2rem;
+    
+    /* 🟢 SOLUCIÓN ESTRICTA: Capa oscura + Imagen separadas por coma sin interrupciones */
+    background-image: linear-gradient(rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0.45)), 
+                      url('/img/Fondo.jpg');
+    background-size: cover;       /* Hace que la imagen llene todo el espacio sin deformarse */
+    background-position: center;  /* Centra el patrón tecnológico en cualquier pantalla */
+    background-repeat: no-repeat; /* Evita que la imagen se duplique como mosaico */
+    background-attachment: scroll; /* Da un efecto parallax genial al hacer scroll */
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    gap: 4rem;
+}
+
+/* --- Bloque Izquierdo: Avatar --- */
+.hero-avatar-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    padding: 5px;
+    /* Efecto de borde brillante tecnológico circular */
+    background: linear-gradient(135deg, var(--clr-neon-green), var(--clr-cyan-tech));
+    box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
+}
+
+.hero-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #222222; /* Fondo por si la imagen tarda en cargar */
+    display: block;
+}
+
+/* --- Bloque Derecho: Contenido de Texto --- */
+.hero-content-box {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hero-welcome {
+    font-size: 1.1rem;
+    color: var(--clr-cyan-tech); /* Cian para llamadas de atención secundarias */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-name {
+    font-size: 3.5rem;
+    color: var(--clr-white);
+    line-height: 1.1;
+}
+
+.hero-title {
+    font-size: 2rem;
+    color: var(--clr-neon-green); /* Verde neón para resaltar tu profesión */
+    font-weight: bold;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #CCCCCC; /* Blanco grisáceo para mejor legibilidad */
+    max-width: 550px;
+    margin-bottom: 1rem;
+}
+
+/* --- Botones de Acción --- */
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Botón "Ver Proyectos" (Verde Neón Relleno) */
+.btn-hero-primary {
+    background-color: var(--clr-neon-green);
+    color: var(--clr-bg-deep);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 102, 0.3);
+}
+
+.btn-hero-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 255, 102, 0.5);
+}
+
+/* Botón "Contactarme" (Borde Cian) */
+.btn-hero-secondary {
+    background-color: transparent;
+    color: var(--clr-cyan-tech);
+    border: 2px solid var(--clr-cyan-tech);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-secondary:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 255, 255, 0.2);
+}
+
+/* --- Enlaces de Contacto Rápido --- */
+.hero-quick-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #AAAAAA;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.contact-item i {
+    color: var(--clr-cyan-tech); /* Iconos resaltados en cian */
+    font-size: 1.1rem;
+}
+
+.contact-item:hover {
+    color: var(--clr-white);
+}
+
+
+/* ==========================================================================
+   EL CONTENEDOR BENTO GRID MAESTRO (Escritorio)
+   ========================================================================== */
+.dashboard-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    
+    display: grid;
+    /* Dividimos la pantalla en 2 columnas gigantes idénticas (50% y 50%) */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem; /* Separación limpia entre todas las tarjetas */
+    
+    /* 🎯 AQUÍ ESTÁ TU REQUISITO DE CAMBIO RÁPIDO: */
+    grid-template-areas: 
+        "sobre-mi   habilidades"
+        "proyectos  habilidades"
+        "proyectos  educacion"
+        "proyectos  contacto";
+}
+
+/* Base común e inteligente para todas las tarjetas del tablero */
+.bento-item {
+    background-color: rgba(30, 30, 30, 0.6); /* Fondo oscuro traslúcido, adiós doble fondo */
+    border: 1px solid rgba(0, 255, 102, 0.15); /* Borde ciber-verde sutil */
+    border-radius: 16px; /* Esquinas redondeadas premium */
+    padding: 2.5rem;
+    backdrop-filter: blur(8px); /* Efecto cristal tecnológico */
+    
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/ /* Empuja la terminal hacia abajo si la tarjeta se estira */
+    gap: 2rem; 
+    justify-content: flex-start;
+    /* Asegura que la tarjeta use la altura real de su contenido interior */
+    height: fit-content;
+    
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover interactivo para todo el tablero */
+.bento-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--clr-neon-green);
+    box-shadow: 0 12px 30px rgba(0, 255, 102, 0.05);
+}
+
+/* ==========================================================================
+   CONEXIÓN DIRECTA CON EL MAPA (No cambias esto nunca)
+   ========================================================================== */
+.area-sobre-mi { grid-area: sobre-mi; }
+.area-habilidades { grid-area: habilidades; }
+.area-educacion { grid-area: educacion; }
+.area-proyectos { grid-area: proyectos; }
+.area-contacto { grid-area: contacto; }
+
+
+/* ==========================================================================
+   4. SECCIÓN SOBRE MÍ (Estilo Tarjeta - Ocupa la columna izquierda)
+   ========================================================================== */
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: var(--clr-cyan-tech); /* Tu cian tecnológico */
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+/* Línea decorativa neón debajo del título */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background-color: var(--clr-neon-green); /* Tu verde neón */
+    border-radius: 2px;
+}
+
+.about-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #CCCCCC;
+}
+
+/* --- Caja de la Frase (Estilo Terminal en la parte inferior) --- */
+.quote-terminal {
+    background-color: #141414; /* Más oscuro para simular una consola */
+    border: 1px solid rgba(0, 255, 255, 0.15); /* Borde cian sutil */
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Puntitos estilo Mac de la terminal */
+.terminal-dots::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #FF5F56;
+    box-shadow: 16px 0 0 #FFBD2E, 32px 0 0 #27C93F;
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--clr-neon-green); /* Resalta tu frase en verde neón */
+    line-height: 1.4;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+
+/* ==========================================================================
+   5. SECCIÓN DE HABILIDADES (Skills - Dentro de Bento Grid)
+   ========================================================================== */
+
+/* Contenedor principal de las categorías */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Bloque individual de cada categoría */
+.skills-category {
+    text-align: left;
+}
+
+/* Subtítulos (Lenguajes, Frameworks, etc.) */
+.skills-category h3 {
+    font-size: 1.1rem;
+    color: #CCCCCC;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Envoltura Flexbox para las etiquetas (badges) */
+.badges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Estilo individual de cada Badge (Cápsulas oscuras premium) */
+.skill-badge {
+    background-color: var(--clr-bg-deep); /* Mismo color de fondo de tu consola/terminal */
+    border: 1px solid rgba(0, 255, 255, 0.15); /* Tu Cian tecnológico sutil inicial */
+    color: #E0E0E0;
+    padding: 0.45rem 0.95rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap; /* Evita que el texto de un badge se parta en dos líneas */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.25s ease;
+}
+
+/* 🔥 Efecto Hover Interactivo (Brillo Verde Neón al pasar el mouse) */
+.skill-badge:hover {
+    color: var(--accent-color); /* Cambia el texto a tu verde neón */
+    border-color: var(--accent-color); /* El borde se ilumina */
+    background-color: rgba(0, 255, 102, 0.05); /* Pequeño destello de fondo */
+    transform: translateY(-2px); /* Efecto flotante idéntico al de tus botones */
+    box-shadow: 0 4px 12px rgba(0, 255, 102, 0.15);
+}
+
+/* Si tienes FontAwesome, esto le da un toque sutil de color a los iconos */
+.skill-badge i {
+    font-size: 1.23rem;
+    margin-right: 0.1rem;
+    transition: color 0.25s ease;
+}
+
+.skill-badge:hover i {
+    color: var(--accent-color);
+    transform: scale(1.15); /* Esto hace que el icono crezca un 15% solo cuando pasas el mouse */
+}
+
+/* Clase para el escaneo automático (idéntico al hover pero controlado por JS) */
+.skill-badge.active-scan {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background-color: rgba(0, 255, 102, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--accent-color);
+}
+
+/* Hace que el icono crezca durante el escaneo automático */
+.skill-badge.active-scan i {
+    color: var(--accent-color);
+    transform: scale(1.15);
+}
+
+/* ==========================================================================
+   📱 ADAPTACIÓN TOTAL PARA CELULARES (Menú Dinámico Sin Colisiones)
+   ========================================================================== */
+
+@media (max-width: 1040px) {
+
+    /* ----------------------------------------------------------------------
+       == SECCIÓN 2: NAVBAR (Menú Dinámico Móvil) ==
+       ---------------------------------------------------------------------- */
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Ocultamos por completo el contenedor de escritorio en pantallas chicas */
+    .nav-actions {
+        display: none !important;
+    }
+
+    /* Hacemos visible el botón clonado dentro del menú móvil */
+    #nav-action-mobile {
+        display: block;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: 0.5rem;
+    }
+
+    .navbar {
+        padding: 1rem 1.5rem;
+        position: relative;
+    }
+
+    /* 🟢 CAJA ÚNICA: El menú ahora calcula su altura dinámicamente (max-height) */
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #151515; /* Fondo uniforme en todo el bloque */
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.5rem;
+        border-bottom: 2px solid rgba(0, 255, 102, 0.2);
+        
+        /* Sistema de colapso vertical fluido */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden; /* Evita que los botones se salgan mientras está cerrado */
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* 🟢 CLASE ACTIVA: Al abrirse, permite que la caja crezca libremente según su contenido */
+    .nav-menu.nav-menu_visible {
+        max-height: 100vh; /* Permite expandirse lo necesario */
+        opacity: 1;
+        overflow-y: auto; /* Si la pantalla es muy enana, permite hacer scroll interno */
+        pointer-events: auto;
+    }
+
+    .nav-link:link, .nav-link:visited {
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dropdown-toggle {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 🟢 FLUJO NATURAL: Al abrir el submenú, empujará al botón de WhatsApp hacia abajo solo */
+    .dropdown-menu {
+        position: static; 
+        transform: none;
+        background-color: #222222;
+        margin: 0.5rem auto 0 auto;
+        width: 90%;          /* 🟢 Cambia a porcentaje para que sea más natural */
+        max-width: 320px;    /* 🟢 Evita que en pantallas medianas (tablets) el submenú se estire demasiado hacia los lados */
+        box-shadow: none;
+        border: 1px dashed var(--clr-cyan-tech);
+    }
+
+    .dropdown-item:link, .dropdown-item:visited {
+        text-align: center;
+        padding: 0.7rem;
+    }
+
+    .btn-nav:link, .btn-nav:visited {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+
+    .header-spacer {
+        height: 79px; 
+    }
+
+    /* ----------------------------------------------------------------------
+       == SECCIÓN 3: HERO SECTION (Inicio) ==
+       ---------------------------------------------------------------------- */
+    .hero-section {
+        padding: 1rem; /* Reducimos un poco el padding general en celular */
+        width: 100%; /* Asegura que cubra todo el ancho de borde a borde */
+        align-items: flex-start; /* Permite que el contenido fluya mejor si la pantalla es enana */
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2.5rem;
+        padding-top: 2.5rem; /* 🟢 EL TRUCO: Crea el colchón perfecto debajo del Navbar en móviles */
+    }
+
+    .avatar-wrapper {
+        width: 220px;
+        height: 220px;
+    }
+
+    .hero-content-box {
+        align-items: center;
+    }
+
+    .hero-name {
+        font-size: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .btn-hero-primary, .btn-hero-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-quick-contact {
+        justify-content: center;
+        gap: 1.2rem;
+        width: 100%;
+    }
+    
+    .contact-item span {
+        font-size: 0.9rem;
+    }
+
+
+    /* ----------------------------------------------------------------------
+       == ESTRUCTURA GLOBAL: CONTENEDOR MAESTRO (Móvil) ==
+       ---------------------------------------------------------------------- */
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Una sola columna vertical */
+        grid-template-areas: none;  /* Eliminamos el mapa de escritorio */
+        padding: 2rem 1rem;
+        gap: 1.5rem; 
+    }
+
+    /* Base responsiva para todas las tarjetas */
+    .bento-item {
+        padding: 1.5rem; 
+        text-align: center; 
+    }
+
+    /* 🎯 LA SOLUCIÓN ESTRICTA: 
+       Reseteamos 'grid-area' a 'auto' para romper el enganche de escritorio 
+       y aplicamos el orden deseado matemáticamente */
+    .area-sobre-mi { 
+        grid-area: auto; 
+        order: 1; 
+    }
+    .area-habilidades { 
+        grid-area: auto; 
+        order: 2; 
+    }
+    .area-proyectos { 
+        grid-area: auto; 
+        order: 3; 
+    }
+    .area-educacion { 
+        grid-area: auto; 
+        order: 4; 
+    }
+    .area-contacto { 
+        grid-area: auto; 
+        order: 5; 
+    }
+
+
+    /* ----------------------------------------------------------------------
+       == SECCIÓN 4: SOBRE MÍ (Responsive) ==
+       ---------------------------------------------------------------------- */
+    .section-title::after {
+        left: 50%;
+        transform: translateX(-50%); /* Centra la línea verde debajo del título */
+    }
+
+    .quote-text {
+        font-size: 1.1rem; /* Reducimos sutilmente la frase para que no se corte */
+    }
+
+
+    /* ----------------------------------------------------------------------
+       == SECCIÓN 5: HABILIDADES (Responsive Móvil) ==
+       ---------------------------------------------------------------------- */
+    .skills-category {
+        text-align: center; /* Centramos los subtítulos en celular */
+    }
+
+    .badges-grid {
+        justify-content: center; /* Centra el conjunto de badges de forma fluida */
+    }
+}

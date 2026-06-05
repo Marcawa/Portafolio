@@ -1,0 +1,24 @@
+div{
+    background-color: #ededed;
+    padding: 20px;
+    font-family: sans-serif;
+    border-left: 5px solid #bdbbbb;
+}
+
+h1{
+    margin: 0;
+    font-size: 24px; 
+    
+
+    background-color: red;
+}
+
+span{
+    color: blue;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+p{
+    color: #555;
+}

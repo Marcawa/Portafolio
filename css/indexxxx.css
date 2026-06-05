@@ -1,0 +1,396 @@
+/*--------------------------------------------CONFIGURCION---------------------------------------------------------------*/
+:root {
+    /* Paleta base */
+    /*--color-bg-dark: #1a1a1a;          Fondo general */
+    /*--color-bg-alt: #2c2c2c;           Fondo secundario */
+    /*--color-border-dark: #0f3d0f;      Bordes verdes oscuros */
+    /*--color-border-gray: #3a3a3a;      Bordes grises */
+    /*--color-primary: #4CAF50;          Verde principal */
+    /*--color-text: #f0f0f0;             Texto claro */
+    /*--color-placeholder: #b0b0b0;      Texto placeholder */
+
+    /* Colores de la paleta de la imagen */
+    --color-negro-profundo: #1A1A1A;    /* Negro Profundo / Carbón */
+    --color-verde-neon: #00FF66;        /* Verde Neón / Ciber-Vree Vibrante */
+    --color-cian-turquesa: #00FFFF;     /* Cian Turquesa Vibrante (NOTA: #00FFRV no es un código hex válido, asumo que 'RV' es un error tipográfico y debería ser otro valor o simplemente 00FF00) */
+    --color-magenta-brillante: #FF00FF; /* Magenta Brillante */
+    --color-blanco-puro: #FFFF;         /* Blanco Puro (NOTA: #FFFF es un shorthand, el completo sería #FFFFFF) */
+
+    --navbar-logo-space: 100px;  /* 🔹 Espacio izquierdo del logo */
+    --navbar-button-space: 100px; /* 🔹 Espacio derecho del botón */
+}
+
+body {
+    background-color: var(--color-bg-dark); /* Fondo oscuro casi negro */
+    color: var(--color-text); /* Color de texto general */
+    font-family: Arial, sans-serif;
+}
+
+strong {
+  font-weight: bold; /* Fuerza la negrita */
+  
+}
+
+
+
+
+/*--------------------------------------------NAVBAR---------------------------------------------------------------*/
+
+.navbar {
+    background-color: var(--color-bg-dark) !important; /* Navbar muy oscuro */
+    border-bottom: 1px solid var(--color-border-dark); /* Borde inferior verde */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navbar-brand {
+    color: var(--color-text) !important;
+    margin-left: var(--navbar-logo-space, 50px);
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-text) !important;
+    margin-right: 15px;
+    font-size: clamp(0.9rem, 1vw + 0.3rem, 1.2rem); /* Ajuste responsivo */
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--color-primary) !important; /* Verde más brillante al pasar el ratón o activo */
+}
+
+.logo-navbar {
+    height: 90px; /* Ajusta el alto del logo */
+    width: auto; /* Mantiene las proporciones originales */
+    object-fit: contain; /* Asegura que no se deforme */
+    vertical-align: middle; /* Centra con el texto */
+    /* 🔹 Ajustes adicionales para responsividad y control de tamaño */
+    max-height: none; /* Límite máximo para pantallas grandes */
+    max-width: 100%; /* Evita que se salga del contenedor */
+    transition: height 0.3s ease; /* Transición suave si cambias el tamaño */
+}
+
+/* 🔹 Distribución general: logo izquierda, menú centro, botón derecha 
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}*/
+
+/* 🔹 Elimina el padding lateral del container para permitir al logo y botón llegar a los bordes */
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var(--navbar-logo-space, 0px);
+    padding-right: var(--navbar-button-space, 0px);
+}
+
+/* 🔹 Centrar el menú dentro del espacio disponible */
+.navbar-collapse {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+/* 🔹 Contenedor del botón a la derecha */
+.navbar-right {
+    margin-right: var(--navbar-button-space, 50px); /* Espacio derecho ajustable */
+}
+
+/* 🔹 Espaciado ajustable del botón hamburguesa en pantallas pequeñas */
+.navbar-toggler {
+    margin-right: var(--navbar-button-space, 50px); /* Espacio derecho ajustable */
+}
+
+/* 🔹 NUEVA CLASE PARA EL TAMAÑO RESPONSIVO DEL ICONO */
+.icon-responsive-size {
+    /* Mismo ajuste responsivo que usas para los enlaces de navegación */
+    font-size: clamp(0.9rem, 1vw + 0.3rem, 1.2rem); 
+    /* Ajusta la altura de línea para evitar que el icono mueva verticalmente el texto */
+    line-height: 1; 
+}
+
+/* 🚀 SOLUCIÓN ESCALABLE: ESTILOS DEL ESPACIADOR (#navbar-spacer) */
+#navbar-spacer {
+    height: 75px; 
+}
+
+/* 📱 MÓVIL (<=768px): Sincronizamos el espaciado */
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 35px; /* (Ya lo tenías) */
+    }
+    
+    #navbar-spacer {
+        /* 💡 MÓVIL (<=768px): Logo (35px) + Padding del Navbar (0.5rem top + 0.5rem bottom) */
+        /* Total: 35 + 8 + 8 = 51px. Usaremos 65px para un pequeño margen extra si es necesario,
+           o 55px si prefieres algo más ajustado. Usaremos 65px */
+        height: 65px; 
+    }
+    
+    /* Nota: Dejamos el padding-top del .hero-section en 80px para móvil para darle un margen interno a la sección */
+}
+
+
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 35px; /* Tamaño ligeramente menor en pantallas pequeñas */
+    }
+}
+
+/* 🔹 Asegura que el texto y los elementos dentro del menú colapsado estén centrados */
+@media (max-width: 991.98px) { /* Límite de Bootstrap para 'lg' */
+    /* Centra la lista de enlaces */
+    .navbar-collapse .navbar-nav {
+        /* Quita el margen lateral auto que puede aplicar justify-content-center */
+        margin-left: 0;
+        margin-right: 0; 
+        /* Para centrar la lista dentro del espacio disponible */
+        width: 100%;
+    }
+    
+    /* Centra el texto de cada enlace */
+    .navbar-collapse .nav-item {
+        text-align: center; /* Centra el texto de los enlaces */
+        width: 100%; /* Asegura que el ítem ocupe todo el ancho */
+    }
+
+    /* Ajusta el margen del enlace en móvil (opcional, si hay mucho espacio) */
+    .navbar-nav .nav-link {
+        margin-right: 0; /* Elimina el margen derecho horizontal no deseado en móvil */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+
+
+/*--------------------------------------------BODY---------------------------------------------------------------*/
+.hero-section {
+    background-color: var(--color-bg-dark);
+    border-bottom: 2px solid var(--color-border-dark);
+    padding-top: 120px  !important;  /*Espacio para el navbar fijo */
+    padding-bottom: 120px  !important;
+    background-image:url("Fondo.jpg");
+    background-size: contain; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que se repita */
+}
+
+
+.profile-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: var(--color-primary); /* Círculo verde detrás de la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    border: 3px solid var(--color-border-dark); /* Borde más oscuro */
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); /* Sombra verde */
+}
+
+
+.profile-circle img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-bg-dark); /* Borde oscuro para la imagen */
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--color-verde-neon) !important;
+}
+
+
+.lead {
+    color: var(--color-text);
+}
+
+.text-success {
+    color: var(--color-verde-neon) !important; /* Verde principal */
+}
+
+.btn-success {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 5px;
+}
+
+.btn-success:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.btn-outline-success {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .profile-circle {
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile-circle img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/*Sobre mi*/
+.section-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.bg-dark-alt {
+    background-color: var(--color-bg-alt) !important; /* Un gris oscuro para tarjetas */
+    border: 1px solid var(color-border-gray);
+    border-radius: 8px;
+}
+
+.quote {
+    font-style: italic;
+    font-weight: 500;
+    border-left: 5px solid var(--color-primary);
+    padding-left: 15px;
+    margin-top: 30px;
+}
+
+/* Skills Section */
+.skill-item {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-item i {
+    margin-bottom: 5px;
+    color: var(--color-primary); /* Iconos de habilidades en verde */
+}
+
+.skill-item p {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+/* Cards de experiencia/sectores */
+.card-body i {
+    color: var(--color-primary);
+}
+
+/* Education Timeline */
+.timeline {
+    position: relative;
+    padding: 0 0 0 20px; /* Ajuste para la línea */
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: var(--color-primary);
+    z-index: 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px; /* Ajuste para el punto en la línea */
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-bg-dark);
+    z-index: 1;
+}
+
+.timeline-item .card {
+    background-color: var(--color-bg-alt) !important;
+    border: 1px solid var(color-border-gray);
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: 10px; /* Separación de la línea */
+}
+
+.timeline-item .card h5 {
+    font-weight: bold;
+}
+
+/* Contact Form */
+.form-control {
+    background-color: var(--color-bg-alt) !important;
+    border: 1px solid var(color-border-gray) !important;
+    color: var(--color-text) !important;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.form-control::placeholder {
+    color: var(--color-placeholder);
+}
+
+/*--------------------------------------------FOOTER---------------------------------------------------------------*/
+/* Footer */
+footer {
+    background-color: var(--color-bg-dark) !important;
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+
+footer img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
+
+.footer-links p {
+    margin-bottom: 8px;
+}

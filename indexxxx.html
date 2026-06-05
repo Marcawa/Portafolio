@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos Romero - Portafolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/indexxxx.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">  
+        <div class="container-fluid px-0">
+
+            <!-- 🔹 IZQUIERDA: LOGO -->
+            <a class="navbar-brand" href="#">
+                <img src="Logo.png" alt="Logo" class="logo-navbar d-inline-block align-text-top me-2">
+            </a>
+
+            <!-- 🔹 BOTÓN HAMBURGUESA -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 🔹 CENTRO: MENÚ -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+
+                <!-- 🔹 BOTÓN PERFIL SOLO PARA MÓVIL -->
+                <div class="d-lg-none mt-3 text-center w-100">
+                    <button class="btn btn-success w-25">
+                        <i class="fab fa-whatsapp me-1 icon-responsive-size"></i> Contactarme
+                    </button>
+                </div>
+            </div>
+
+            <!-- 🔹 BOTÓN PERFIL SOLO PARA ESCRITORIO -->
+            <div class="navbar-right d-none d-lg-block">
+                <button class="btn btn-success">
+                    <i class="fab fa-whatsapp me-1 icon-responsive-size"></i> Contactarme
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navbar-spacer"></div>
+
+    <main class="container-fluid py-5">
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section text-center py-5 mb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Columna izquierda -->
+                    <div class="col-md-5 mb-4 mb-md-0 text-center text-md-start">
+                        <div class="profile-circle mx-auto mx-md-0 mb-3">
+                            <img src="Marc.jpg" alt="Marcos Romero" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="social-icons">
+                            <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-github"></i></a>
+                            <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn btn-outline-success"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div class="col-md-7 text-center text-md-start">
+                        <h1 class="text-white">Marcos Romero</h1>
+                        <p class="lead text-success mb-4">
+                            <strong><i class="fas fa-cogs text-success me-2"></i> Tecnólogo superior en Desarrollo de software <i class="fas fa-laptop-code text-success me-2"></i></strong><br>
+                            <span class="text-white"><strong>Especializado en transformar ideas complejas en soluciones digitales robustas</strong>,
+        aplicando metodologías ágiles para <strong>entregas eficientes y de alto valor</strong>.</span>
+                        </p>
+                        <button class="btn btn-lg btn-success">
+                            <i class="fas fa-download me-2"></i>Descargar CV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="container">
+            <div class="row">
+                <!-- About Me Section --><section id="sobre-mi" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">
+                        <i class="fas fa-user-circle me-2"></i>Sobre Mí
+                    </h2>
+                    <p class="text-light mb-3">
+                        El desarrollo de software es mi constante y apasionado día a día. Mediante el código logro darle forma a ideas complejas, creando soluciones funcionales e impactantes.
+                    </p>
+                    <p class="quote text-success fs-4">
+                        "Cada línea el código es<br>oportunidad para innovar."
+                    </p>
+                </section>
+
+                <!-- Skills Section --><section id="habilidades" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">Habilidades</h2>
+
+                    <h3 class="text-white mb-3"><i class="fas fa-cogs me-2"></i>Frameworks y Herramientas</h3>
+                    <div class="row text-center mb-4">
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-html5 fa-2x text-white"></i>
+                            <p class="text-secondary">HTML5</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-css3-alt fa-2x text-white"></i>
+                            <p class="text-secondary">CSS3</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-js fa-2x text-white"></i>
+                            <p class="text-secondary">JavaScript</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-bootstrap fa-2x text-white"></i>
+                            <p class="text-secondary">Bootstrap</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-react fa-2x text-white"></i>
+                            <p class="text-secondary">React</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-angular fa-2x text-white"></i>
+                            <p class="text-secondary">Angular</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-node-js fa-2x text-white"></i>
+                            <p class="text-secondary">Node.js</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fab fa-python fa-2x text-white"></i>
+                            <p class="text-secondary">Python</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-white mb-3"><i class="fas fa-database me-2"></i>Bases de Datos</h3>
+                    <div class="row text-center mb-4">
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fas fa-database fa-2x text-white"></i>
+                            <p class="text-secondary">SQL</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fas fa-leaf fa-2x text-white"></i>
+                            <p class="text-secondary">MongoDB</p>
+                        </div>
+                        <div class="col-3 col-md-2 skill-item">
+                            <i class="fas fa-server fa-2x text-white"></i>
+                            <p class="text-secondary">PostgreSQL</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-white mb-3" id="proyectos"><i class="fas fa-briefcase me-2"></i>Sectores de Experiencia</h3>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-balance-scale fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Sistema Judicial</p>
+                                <small class="text-secondary">Desarrollo de herramientas legales.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-hospital fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Hospital</p>
+                                <small class="text-secondary">Gestión de sistemas de salud.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-plane fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Aerolíneas</p>
+                                <small class="text-secondary">Sistemas de reserva y logística.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-building fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Empresarial</p>
+                                <small class="text-secondary">Soluciones de gestión empresarial.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-hotel fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Hotelería</p>
+                                <small class="text-secondary">Plataformas de gestión hotelera.</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card bg-dark-alt text-center p-3">
+                                <i class="fas fa-car fa-3x text-success mb-2"></i>
+                                <p class="mb-0 text-white">Automotriz</p>
+                                <small class="text-secondary">Sistemas de concesionarios y ventas.</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="row">
+                <!-- Education Section --><section id="educacion" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">
+                        <i class="fas fa-graduation-cap me-2"></i>Educación
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item mb-4">
+                            <div class="card bg-dark-alt p-3">
+                                <h5 class="text-white mb-1">Tecnología Universitaria Unifranz Sucre</h5>
+                                <p class="text-success mb-1">Tecnólogo Superior en Desarrollo de Software</p>
+                                <p class="text-secondary mb-0">2017 - 2020</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-4">
+                            <div class="card bg-dark-alt p-3">
+                                <h5 class="text-white mb-1">Tecnología Universitaria Unifranz Sucre</h5>
+                                <p class="text-success mb-1">Tecnólogo Superior en Desarrollo de Software</p>
+                                <p class="text-secondary mb-0">2021 - 2023</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="card bg-dark-alt p-3">
+                                <h5 class="text-white mb-1">Colegio Militar Teófilo Núñez Ortiz</h5>
+                                <p class="text-success mb-1">Bachillerato en Ciencias</p>
+                                <p class="text-secondary mb-0">2010 - 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section --><section id="contacto" class="col-lg-6 mb-5">
+                    <h2 class="section-title text-success mb-4">
+                        <i class="fas fa-envelope me-2"></i>Es Contacto
+                    </h2>
+                    <p class="text-light mb-4">¿Tienes alguna propuesta o proyecto en mente?</p>
+
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control bg-dark-alt text-white border-0" placeholder="Nombre">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control bg-dark-alt text-white border-0" placeholder="Correo electrónico">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control bg-dark-alt text-white border-0" rows="5" placeholder="Mensaje"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100">Enviar Mensaje</button>
+                    </form>
+
+                    <div class="social-icons mt-4 text-center">
+                        <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="btn btn-outline-success me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-outline-success"><i class="fab fa-github"></i></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-center py-4 mt-5">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+                <img src="https://via.placeholder.com/50" alt="Marcos Romero" class="img-fluid rounded-circle me-3">
+                <div>
+                    <h5 class="text-white mb-0">Marcos Romero</h5>
+                    <p class="text-success mb-0">Transformando ideas en soluciones tecnológicas.</p>
+                </div>
+            </div>
+            <div class="footer-links mb-3">
+                <p class="text-white mb-1"><i class="fas fa-envelope me-2"></i>marcosdev@gmail.com</p>
+                <p class="text-white mb-1"><i class="fab fa-github me-2"></i>github.com/usuario</p>
+                <p class="text-white mb-0"><i class="fab fa-linkedin-in me-2"></i>linkedin.com/in/usuario</p>
+            </div>
+            <p class="text-secondary small mt-3">
+                © 2023 Marcos Romero - Todos con la pasión y dedicación por Marcos Romero.
+                <br>
+                <span>SUMPOSICIÓN FINAL</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

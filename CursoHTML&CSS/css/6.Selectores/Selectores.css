@@ -1,0 +1,17 @@
+
+
+/*SELECCION POR ID*/
+.Ingrediente_Faltante{
+    color: red;
+}
+
+/*SELECCION POR CLASES*/
+#Ingrediente_Secreto{
+    color: blueviolet;
+}
+
+/*SELECCION POR ETIQUETA*/
+li{
+    color: black;
+    font-size: 50px;
+}

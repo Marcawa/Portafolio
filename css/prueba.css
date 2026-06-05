@@ -1,0 +1,163 @@
+/*--------------------------------------------CONFIGURCION---------------------------------------------------------------*/
+:root {
+    /* Paleta base */
+    /*--color-bg-dark: #1a1a1a;          Fondo general */
+    /*--color-bg-alt: #2c2c2c;           Fondo secundario */
+    /*--color-border-dark: #0f3d0f;      Bordes verdes oscuros */
+    /*--color-border-gray: #3a3a3a;      Bordes grises */
+    /*--color-primary: #4CAF50;          Verde principal */
+    /*--color-text: #f0f0f0;             Texto claro */
+    /*--color-placeholder: #b0b0b0;      Texto placeholder */
+
+    /* Colores de la paleta de la imagen */
+    --color-negro-profundo: #1A1A1A;    /* Negro Profundo / Carbón */
+    --color-verde-neon: #00FF66;        /* Verde Neón / Ciber-Vree Vibrante */
+    --color-cian-turquesa: #00FFFF;     /* Cian Turquesa Vibrante (NOTA: #00FFRV no es un código hex válido, asumo que 'RV' es un error tipográfico y debería ser otro valor o simplemente 00FF00) */
+    --color-magenta-brillante: #FF00FF; /* Magenta Brillante */
+    --color-blanco-puro: #FFFF;         /* Blanco Puro (NOTA: #FFFF es un shorthand, el completo sería #FFFFFF) */
+
+    --navbar-logo-space: 100px;  /* 🔹 Espacio izquierdo del logo */
+    --navbar-button-space: 100px; /* 🔹 Espacio derecho del botón */
+}
+
+body {
+    background-color: var(--color-bg-dark); /* Fondo oscuro casi negro */
+    color: var(--color-text); /* Color de texto general */
+    font-family: Arial, sans-serif;
+}
+
+strong {
+  font-weight: bold; /* Fuerza la negrita */
+  
+}
+
+
+
+/*--------------------------------------------NAVBAR---------------------------------------------------------------*/
+
+.navbar {
+    background-color: var(--color-bg-dark) !important; /* Navbar muy oscuro */
+    border-bottom: 1px solid var(--color-border-dark); /* Borde inferior verde */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navbar-brand {
+    color: var(--color-text) !important;
+    margin-left: var(--navbar-logo-space, 50px);
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-text) !important;
+    margin-right: 15px;
+    font-size: clamp(0.9rem, 1vw + 0.3rem, 1.2rem); /* Ajuste responsivo */
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--color-primary) !important; /* Verde más brillante al pasar el ratón o activo */
+}
+
+.logo-navbar {
+    height: 90px; /* Ajusta el alto del logo */
+    width: auto; /* Mantiene las proporciones originales */
+    object-fit: contain; /* Asegura que no se deforme */
+    vertical-align: middle; /* Centra con el texto */
+    /* 🔹 Ajustes adicionales para responsividad y control de tamaño */
+    max-height: none; /* Límite máximo para pantallas grandes */
+    max-width: 100%; /* Evita que se salga del contenedor */
+    transition: height 0.3s ease; /* Transición suave si cambias el tamaño */
+}
+
+/* 🔹 Distribución general: logo izquierda, menú centro, botón derecha 
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}*/
+
+/* 🔹 Elimina el padding lateral del container para permitir al logo y botón llegar a los bordes */
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var(--navbar-logo-space, 0px);
+    padding-right: var(--navbar-button-space, 0px);
+}
+
+/* 🔹 Centrar el menú dentro del espacio disponible */
+.navbar-collapse {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+/* 🔹 Contenedor del botón a la derecha */
+.navbar-right {
+    margin-right: var(--navbar-button-space, 50px); /* Espacio derecho ajustable */
+}
+
+/* 🔹 Espaciado ajustable del botón hamburguesa en pantallas pequeñas */
+.navbar-toggler {
+    margin-right: var(--navbar-button-space, 50px); /* Espacio derecho ajustable */
+}
+
+/* 🔹 NUEVA CLASE PARA EL TAMAÑO RESPONSIVO DEL ICONO */
+.icon-responsive-size {
+    /* Mismo ajuste responsivo que usas para los enlaces de navegación */
+    font-size: clamp(0.9rem, 1vw + 0.3rem, 1.2rem); 
+    /* Ajusta la altura de línea para evitar que el icono mueva verticalmente el texto */
+    line-height: 1; 
+}
+
+/* 🚀 SOLUCIÓN ESCALABLE: ESTILOS DEL ESPACIADOR (#navbar-spacer) */
+#navbar-spacer {
+    height: 75px; 
+}
+
+/* 📱 MÓVIL (<=768px): Sincronizamos el espaciado */
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 35px; /* (Ya lo tenías) */
+    }
+    
+    #navbar-spacer {
+        /* 💡 MÓVIL (<=768px): Logo (35px) + Padding del Navbar (0.5rem top + 0.5rem bottom) */
+        /* Total: 35 + 8 + 8 = 51px. Usaremos 65px para un pequeño margen extra si es necesario,
+           o 55px si prefieres algo más ajustado. Usaremos 65px */
+        height: 65px; 
+    }
+    
+    /* Nota: Dejamos el padding-top del .hero-section en 80px para móvil para darle un margen interno a la sección */
+}
+
+
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 35px; /* Tamaño ligeramente menor en pantallas pequeñas */
+    }
+}
+
+/* 🔹 Asegura que el texto y los elementos dentro del menú colapsado estén centrados */
+@media (max-width: 991.98px) { /* Límite de Bootstrap para 'lg' */
+    /* Centra la lista de enlaces */
+    .navbar-collapse .navbar-nav {
+        /* Quita el margen lateral auto que puede aplicar justify-content-center */
+        margin-left: 0;
+        margin-right: 0; 
+        /* Para centrar la lista dentro del espacio disponible */
+        width: 100%;
+    }
+    
+    /* Centra el texto de cada enlace */
+    .navbar-collapse .nav-item {
+        text-align: center; /* Centra el texto de los enlaces */
+        width: 100%; /* Asegura que el ítem ocupe todo el ancho */
+    }
+
+    /* Ajusta el margen del enlace en móvil (opcional, si hay mucho espacio) */
+    .navbar-nav .nav-link {
+        margin-right: 0; /* Elimina el margen derecho horizontal no deseado en móvil */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}

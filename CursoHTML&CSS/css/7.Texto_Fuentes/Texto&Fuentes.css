@@ -1,0 +1,121 @@
+
+/*
+    color: elgir color de texto
+*/
+.COLOR{
+    color: red;
+}
+
+
+/*
+    font-family: elgir tipografia de texto
+    * Si la tipografia esta compuesta de dos palabras va en comillas ''
+    * Por si el navegador no carga alguna tipografia se puede poner una o varias tipografias separadas por coma para que cargue la siguiente en orden
+
+*/
+.FONT-FAMILY{
+    font-family: sans-serif;
+}
+
+
+/*
+    font-size: modifica el tamano de la letra por UNIDADES DE MEDIDA (px, rem, %) 
+    * Por defecto el navegador pone la letra el 16px
+
+*/
+.FONT-SIZE{
+    font-size: 20px;
+}
+
+
+/*
+    font-weight: modifica el grosor de letra (del grosor 100 al grosor 900 o en bold o bolder)
+    * Bold: va del grosor por defecto al siguiente grosor
+    * Bolder: si estas en un grosor intermedio(400) Bolder buscara el siguiente grosor (600)
+
+*/
+.FONT-WEIGHT{
+    font-family: sans-serif;
+    font-weight: 900;
+}
+    .BOLD{
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+    .BOLDER{
+        font-family: tahoma;
+        font-weight: bolder;
+    }
+
+
+/*
+    font-weight: 
+
+*/
+.FONT-STYLE{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.TEXT-ALING{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.TEXT-DECORATION{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.LINE-HEIGHT{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.LETTER-SPACING{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.TEXT-TRANSFORM{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.TEXT-SHADOW{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.WORD-WRAP{
+
+}
+
+/*
+    font-weight: 
+
+*/
+.WORD-BREAK{
+
+}
