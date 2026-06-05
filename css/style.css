@@ -212,7 +212,7 @@ main {
     
     /* 🟢 SOLUCIÓN ESTRICTA: Capa oscura + Imagen separadas por coma sin interrupciones */
     background-image: linear-gradient(rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0.45)), 
-                      url('/img/Fondo.jpg');
+                      url('../img/Fondo.jpg');
     background-size: cover;       /* Hace que la imagen llene todo el espacio sin deformarse */
     background-position: center;  /* Centra el patrón tecnológico en cualquier pantalla */
     background-repeat: no-repeat; /* Evita que la imagen se duplique como mosaico */
