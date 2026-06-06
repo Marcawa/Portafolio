@@ -588,6 +588,177 @@ main {
     transform: scale(1.15);
 }
 
+
+/* ==========================================================================
+   6. ESTILOS INTERNOS DE PROYECTOS (Estructura Semántica con article)
+   ========================================================================== */
+.projects-header {
+    margin-bottom: 1.5rem;
+}
+
+/* 💎 CLAVE 1: align-items: start evita que una tarjeta obligue a la de al lado a estirarse */
+.projects-subgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.5rem;
+    width: 100%;
+    align-items: start; 
+}
+
+.project-card {
+    background: none;
+    padding: 0;
+    border: none;
+    height: 100%;
+}
+
+/* El enlace interno maneja el flujo de manera elástica y segura */
+.project-card-link {
+    background-color: #141414;
+    border: 1px solid rgba(0, 255, 102, 0.1);
+    border-radius: 14px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Permite crecimiento natural hacia abajo */
+    gap: 1.2rem; /* Separación base inicial uniforme */
+    text-decoration: none; 
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Parte superior: Icono y Textos */
+.project-card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.project-icon-box {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid transparent;
+    transition: transform 0.3s ease;
+}
+
+.card-cyan i { color: var(--clr-cyan-tech); }
+.card-cyan { border-color: rgba(0, 255, 255, 0.2); }
+
+.card-green i { color: var(--clr-neon-green); }
+.card-green { border-color: rgba(0, 255, 102, 0.2); }
+
+.card-magenta i { color: var(--clr-magenta-bold); }
+.card-magenta { border-color: rgba(255, 0, 255, 0.2); }
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.project-info h3 {
+    font-size: 1.3rem;
+    color: var(--clr-white);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #AAAAAA;
+}
+
+/* Parte Inferior: Contenedor elástico */
+.project-card-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto; /* Empuja el bloque inferior abajo si hay espacio de sobra */
+}
+
+/* 💎 CLAVE 2: Flujo nativo y seguro. No tapa texto jamás. */
+.project-tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    
+    /* Estado colapsado físico real */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-bottom: 0; 
+    
+    /* Animación suave de apertura física */
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.25s ease, 
+                padding-bottom 0.35s ease;
+}
+
+.tech-tag {
+    background-color: rgba(30, 30, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--clr-cyan-tech);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Botón interactivo "Ver Proyecto" */
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--clr-white);
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: color 0.3s ease, margin-top 0.3s ease;
+    white-space: nowrap;
+    padding-top: 0.5rem;
+}
+
+.project-btn i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* 🔥 INTERACCIONES REACTIVAS HOVER */
+.project-card-link:hover {
+    transform: translateY(-5px);
+    border-color: var(--clr-neon-green);
+    box-shadow: 0 10px 25px rgba(0, 255, 102, 0.08);
+}
+
+/* 💎 CLAVE 3: Cuando se abre, empuja físicamente manteniendo distancias perfectas */
+.project-card-link:hover .project-tech-badges {
+    max-height: 120px; /* Espacio de sobra para las etiquetas */
+    opacity: 1;
+    padding-bottom: 1rem; /* Separación controlada y limpia con el botón de abajo */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Línea sutil de separación superior opcional */
+    padding-top: 1rem; /* Da aire entre el párrafo largo y las tecnologías */
+}
+
+.project-card-link:hover h3 { color: var(--clr-neon-green); }
+.project-card-link:hover .project-icon-box { transform: scale(1.05); }
+.project-card-link:hover .project-btn { color: var(--clr-neon-green); }
+.project-card-link:hover .project-btn i { transform: translateX(4px); }
+
 /* ==========================================================================
    📱 ADAPTACIÓN TOTAL PARA CELULARES (Menú Dinámico Sin Colisiones)
    ========================================================================== */
@@ -821,5 +992,42 @@ main {
 
     .badges-grid {
         justify-content: center; /* Centra el conjunto de badges de forma fluida */
+    }
+
+
+    /* ----------------------------------------------------------------------
+       == SECCIÓN 6: OPTIMIZACIÓN DE PROYECTOS (Móvil Semántico) ==
+       ---------------------------------------------------------------------- */
+    .projects-subgrid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .project-card-link {
+        padding: 1.5rem;
+        gap: 1.2rem;
+    }
+
+    /* En celulares se mantienen abiertas fijas en el flujo sin transiciones */
+    .project-tech-badges {
+        max-height: none !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+        padding-bottom: 1rem !important;
+        padding-top: 1rem !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .project-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 0;
+        border: 1px solid rgba(0, 255, 102, 0.2);
+        border-radius: 6px;
+        color: var(--clr-neon-green);
+    }
+
+    .project-card-link:hover {
+        transform: translateY(-4px);
     }
 }
