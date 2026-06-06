@@ -760,6 +760,189 @@ main {
 .project-card-link:hover .project-btn i { transform: translateX(4px); }
 
 /* ==========================================================================
+   7. SECCIÓN DE EDUCACIÓN (Estilo Línea de Tiempo Git / Terminal)
+   ========================================================================== */
+
+.education-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-left: 1.5rem; /* Espacio para la línea vertical guía */
+    margin-top: 0.5rem;
+    text-align: left; /* Alineación limpia a la izquierda para escritorio */
+}
+
+/* La línea vertical tecnológica que simula una rama (branch) de Git */
+.education-timeline::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    width: 2px;
+    height: calc(100% - 10px);
+    background: linear-gradient(to bottom, var(--clr-cyan-tech), rgba(0, 255, 102, 0.2));
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Nodos interactivos de la línea de tiempo */
+.timeline-marker {
+    position: absolute;
+    left: -1.5rem;
+    left: calc(-1.5rem - 1px); /* Ajuste milimétrico sobre la línea guía */
+    width: 32px;
+    height: 32px;
+    background-color: #141414; /* Consola profunda */
+    border: 2px solid var(--clr-cyan-tech);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-marker i {
+    font-size: 0.85rem;
+    color: var(--clr-cyan-tech);
+    transition: color 0.3s ease;
+}
+
+/* Contenido de cada tarjeta educativa */
+.timeline-content {
+    background-color: #141414; /* Sincronizado con tus terminales interiores */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    color: var(--clr-neon-green); /* Verde neón para el bloque temporal */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 0.5px;
+}
+
+/* Contenedor del título (h3) que alinea el contenido en una sola línea */
+.timeline-title {
+    font-size: 1.25rem;
+    color: var(--clr-white); /* El guion separador "-" heredará este blanco */
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* El Grado académico: Resaltado con tu Magenta de las variables globales */
+.timeline-degree {
+    display: block;
+    color: var(--clr-white);
+}
+
+/* La Institución: Conserva el color blanco limpio dentro del encabezado */
+.timeline-institution {
+    display: block;
+    color: var(--clr-magenta-bold);
+    font-weight: 900; /* Un poco más ligera para contrastar con el grado */
+
+    font-size: 1.05rem; /* Un pelín más pequeña que el grado para dar jerarquía */
+    margin-top: 0.2rem;  /* Espaciado perfecto hacia abajo */
+}
+
+/* El párrafo inferior: Pasa a ser una descripción secundaria limpia */
+.timeline-description {
+    font-size: 0.95rem;
+    color: #AAAAAA; /* Gris suave para jerarquía de lectura */
+    line-height: 1.4;
+    margin-top: 0.2rem;
+}
+
+/* Sistema de estados (Badges de Estado del commit/estudio) */
+.timeline-status {
+    margin-top: 0.3rem;
+    display: flex;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Punto pulsante para lo que está en curso */
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* 1. COMPLETADO (Colegio Militar) -> Verde Neón: Éxito/Finalizado */
+.status-completed {
+    color: var(--clr-neon-green);
+    border-color: rgba(0, 255, 102, 0.2);
+}
+.status-completed .status-dot {
+    background-color: var(--clr-neon-green);
+    box-shadow: 0 0 8px var(--clr-neon-green);
+}
+
+/* 2. EN CURSO (Tecnológico Espíritu Santo) -> Cian: Proceso Activo */
+.status-current {
+    color: var(--clr-cyan-tech);
+    border-color: rgba(0, 255, 255, 0.2);
+}
+.status-current .status-dot {
+    background-color: var(--clr-cyan-tech);
+    box-shadow: 0 0 8px var(--clr-cyan-tech);
+}
+
+/* 3. PLANIFICADO / FUTURO (Seminario de Graduación) -> Blanco: Estado Espera */
+.status-upcoming {
+    color: var(--clr-cyan-tech);
+    border-color: rgba(0, 255, 255, 0.2);
+}
+.status-upcoming .status-dot {
+    background-color: var(--clr-cyan-tech);
+    box-shadow: 0 0 8px var(--clr-cyan-tech);
+}
+
+/* 🔥 EFECTOS HOVER COMPUESTOS E INTERACTIVOS */
+.timeline-item:hover .timeline-marker {
+    border-color: var(--clr-neon-green);
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+}
+
+.timeline-item:hover .timeline-marker i {
+    color: var(--clr-neon-green);
+}
+
+.timeline-item:hover .timeline-content {
+    border-color: rgba(0, 255, 102, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 255, 102, 0.03);
+    transform: translateX(4px); /* Desplazamiento sutil tecnológico */
+}
+
+/* ==========================================================================
    📱 ADAPTACIÓN TOTAL PARA CELULARES (Menú Dinámico Sin Colisiones)
    ========================================================================== */
 
@@ -1029,5 +1212,47 @@ main {
 
     .project-card-link:hover {
         transform: translateY(-4px);
+    }
+
+
+    /* ----------------------------------------------------------------------
+       == SECCIÓN 7: EDUCACIÓN (Responsive Móvil) ==
+       ---------------------------------------------------------------------- */
+    .education-timeline {
+        /* Mantenemos el padding izquierdo para que la línea y los nodos tengan espacio */
+        padding-left: 1.5rem; 
+        align-items: flex-start; /* Evita que se fuerce al centro */
+    }
+
+    /* ¡Forzamos que la línea vertical siga visible! */
+    .education-timeline::before {
+        display: block !important;
+        left: 7px; /* Asegura la posición exacta del eje */
+    }
+
+    .timeline-item {
+        flex-direction: row; /* Mantiene la orientación horizontal (nodo al lado del texto) */
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    /* ¡Forzamos que los círculos con los iconos sigan visibles! */
+    .timeline-marker {
+        display: flex !important;
+        left: calc(-1.5rem - 1px); /* Mantiene el ajuste milimétrico sobre la línea */
+    }
+
+    .timeline-content {
+        text-align: left; /* Alineación limpia a la izquierda igual que en PC */
+        padding: 1.2rem;   /* Un poquito menos de padding para pantallas pequeñas */
+        width: 100%;
+    }
+
+    .timeline-date {
+        justify-content: flex-start; /* Alinea la fecha a la izquierda */
+    }
+
+    .timeline-status {
+        justify-content: flex-start; /* Alinea los badges a la izquierda */
     }
 }
