@@ -393,7 +393,7 @@ main {
         "sobre-mi   habilidades"
         "proyectos  habilidades"
         "proyectos  educacion"
-        "proyectos  contacto";
+        "contacto   certificaciones";
 }
 
 /* Base común e inteligente para todas las tarjetas del tablero */
@@ -429,6 +429,7 @@ main {
 .area-habilidades { grid-area: habilidades; }
 .area-educacion { grid-area: educacion; }
 .area-proyectos { grid-area: proyectos; }
+.area-certificaciones { grid-area: certificaciones; }
 .area-contacto { grid-area: contacto; }
 
 
@@ -942,6 +943,167 @@ main {
     transform: translateX(4px); /* Desplazamiento sutil tecnológico */
 }
 
+
+/* ==========================================================================
+   8. SECCIÓN DE CERTIFICACIONES (Tarjetas con Fondo de Imagen Dinámico)
+   ========================================================================== */
+
+.certs-subgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.5rem;
+    width: 100%;
+    align-items: stretch; 
+    
+    /* 🎯 SOLUCIÓN AL SCROLL: Altura fija calculada para mostrar 2 filas completas y asomar la 3ra */
+    max-height: 590px; 
+    overflow-y: auto;   /* Activa el scroll vertical */
+
+    /* 🎯 TRUCO MAESTRO: Mueve la barra de scroll al lado izquierdo */
+    direction: rtl; 
+    /*
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.2rem;  
+    padding-right: 0;*/
+
+    /* El Padding aquí es el colchón para que la carta no se corte al subir */
+    padding: 0.5rem 0 0.5rem 1.2rem;
+}
+
+/* 🎨 Personalización de la barra de scroll (Scrollbar futurista) */
+.certs-subgrid::-webkit-scrollbar {
+    width: 13px; /* Barra delgada y elegante */
+}
+
+.certs-subgrid::-webkit-scrollbar-track {
+    /*background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;*/
+    background: transparent;
+}
+
+.certs-subgrid::-webkit-scrollbar-thumb {
+    background: var(--clr-cyan-tech); 
+    /* 
+    border-radius: 10px;
+    transition: background 0.3s ease; */
+
+    border: 4px solid transparent; 
+    background-clip: padding-box; 
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.certs-subgrid::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-neon-green); /* Cambia a verde neón al hacerle hover */
+}
+
+.cert-card {
+    /* 🎯 TRUCO MAESTRO (Parte 2): Restaura el orden y alineación del contenido normal de izquierda a derecha */
+    direction: ltr;
+
+    position: relative;
+    background-color: #141414;
+    border: 1px solid rgba(0, 255, 255, 0.15); 
+    border-radius: 14px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;     
+    min-height: 190px; 
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
+}
+
+.cert-overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.88); 
+    transition: background-color 0.3s ease;
+    z-index: -1;
+}
+
+.cert-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;      
+    gap: 0.6rem;
+    height: 100%;
+    width: 100%;
+}
+
+.cert-name {
+    font-size: 1.15rem;
+    color: var(--clr-magenta-bold); /* Mantiene tu magenta actual */
+    font-weight: 700;
+    line-height: 1.3;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cert-description {
+    font-size: 0.9rem;
+    color: #AAAAAA;
+    line-height: 1.4;
+    flex-grow: 1; 
+}
+
+.cert-id {
+    font-size: 0.8rem;
+    color: var(--clr-neon-green); 
+    font-family: monospace; 
+    margin-top: auto; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+    padding-top: 0.5rem;
+    width: 80%;             
+    letter-spacing: 0.5px;
+}
+
+/* 🔥 EFECTOS HOVER */
+.cert-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--clr-neon-green);
+    box-shadow: 0 8px 24px rgba(0, 255, 102, 0.1);
+}
+
+.cert-card:hover .cert-overlay {
+    background-color: rgba(20, 20, 20, 0.78); 
+}
+
+.cert-card:hover .cert-name {
+    color: var(--clr-neon-green); 
+}
+
+/* ==========================================================================
+   📂 DECLARACIÓN DE IMÁGENES DE FONDO (Escalable)
+   Aquí irás enlazando la ruta de tus capturas de los certificados
+   ========================================================================== */
+.cert-1 { background-image: url('../img/certs/estadistica.jpg'); }
+.cert-2 { background-image: url('../img/certs/powerbi-basico.jpg'); }
+.cert-3 { background-image: url('../img/certs/programacion-r.jpg'); }
+.cert-4 { background-image: url('../img/certs/access.jpg'); }
+.cert-5 { background-image: url('../img/certs/gcp.jpg'); }
+.cert-6 { background-image: url('../img/certs/python-data.jpg'); }
+.cert-7 { background-image: url('../img/certs/powerbi-avanzado.jpg'); }
+.cert-8 { background-image: url('../img/certs/sql.jpg'); }
+.cert-9 { background-image: url('../img/certs/bigdata.jpg'); }
+.cert-10 { background-image: url('../img/certs/business-analytics.jpg'); }
+.cert-11 { background-image: url('../img/certs/powerquery.jpg'); }
+
+
+
 /* ==========================================================================
    📱 ADAPTACIÓN TOTAL PARA CELULARES (Menú Dinámico Sin Colisiones)
    ========================================================================== */
@@ -1111,45 +1273,29 @@ main {
        == ESTRUCTURA GLOBAL: CONTENEDOR MAESTRO (Móvil) ==
        ---------------------------------------------------------------------- */
     .dashboard-grid {
-        grid-template-columns: 1fr; /* Una sola columna vertical */
-        grid-template-areas: none;  /* Eliminamos el mapa de escritorio */
-        gap: 1.5rem; 
+        grid-template-columns: 1fr; /* Una sola columna vertical limpia */
+        
+        /* 🎯 TU EXCELENTE MÉTODO: Mapeo visual exacto del orden en celulares */
+        grid-template-areas: 
+            "sobre-mi"
+            "habilidades"
+            "proyectos"
+            "educacion"
+            "certificaciones"
+            "contacto"; 
+            
+        gap: 1.5rem; /* Separación perfecta entre bloques en pantallas pequeñas */
 
-        /*padding: 2rem 1rem;*/
-        /* 🎯 EL ESCUDO DEFINITIVO: 
-           Subimos el padding superior a 4rem. Esto empuja físicamente todo el Bento Grid hacia abajo, 
-           impidiendo matemáticamente que tape o encime tu barra de contactos rápidos. */
+        /* 🛡️ EL ESCUDO DE PROTECCIÓN VISUAL:
+           Mantenemos este espacio superior para que al hacer scroll, el Bento Grid 
+           no se meta debajo de tu Navbar o tus datos de contacto rápido flotantes. */
         padding: 4rem 1rem 4rem 1rem;
     }
 
-    /* Base responsiva para todas las tarjetas */
+    /* Ajuste de relleno interno de las tarjetas en móviles para ganar espacio */
     .bento-item {
         padding: 1.5rem; 
-        text-align: center; 
-    }
-
-    /* 🎯 LA SOLUCIÓN ESTRICTA: 
-       Reseteamos 'grid-area' a 'auto' para romper el enganche de escritorio 
-       y aplicamos el orden deseado matemáticamente */
-    .area-sobre-mi { 
-        grid-area: auto; 
-        order: 1; 
-    }
-    .area-habilidades { 
-        grid-area: auto; 
-        order: 2; 
-    }
-    .area-proyectos { 
-        grid-area: auto; 
-        order: 3; 
-    }
-    .area-educacion { 
-        grid-area: auto; 
-        order: 4; 
-    }
-    .area-contacto { 
-        grid-area: auto; 
-        order: 5; 
+        text-align: center; /* Centrado opcional para mejor estética en celulares */
     }
 
 
@@ -1255,4 +1401,28 @@ main {
     .timeline-status {
         justify-content: flex-start; /* Alinea los badges a la izquierda */
     }
+
+
+    /* ----------------------------------------------------------------------
+   == SECCIÓN 8: CERTIFICACIONES (Responsive Móvil) ==
+   ---------------------------------------------------------------------- */
+    .certs-subgrid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        max-height: 550px; /* Ajuste de altura para que en móvil también corte la tarjeta inferior por la mitad */
+        
+        /* En mobile, solo dejamos un margen vertical para no perder ancho de pantalla */
+        padding: 0.5rem 0;
+    }
+
+    .certs-subgrid::-webkit-scrollbar {
+        display: none;
+        width: 0px;
+        background: transparent;
+    }
+    /*
+    .cert-card {
+        min-height: auto;
+        padding: 1.4rem;
+    }*/
 }
