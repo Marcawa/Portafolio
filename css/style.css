@@ -380,39 +380,24 @@ main {
 .dashboard-grid {
     max-width: 1400px;
     margin: 0 auto;
-    /*padding: 4rem 2rem;*/
-    padding: 1rem 2rem 4rem 2rem;
-    
+    padding: 2rem;
     display: grid;
-    /* Dividimos la pantalla en 2 columnas gigantes idénticas (50% y 50%) */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 2rem; /* Separación limpia entre todas las tarjetas */
-    
-    /* 🎯 AQUÍ ESTÁ TU REQUISITO DE CAMBIO RÁPIDO: */
-    grid-template-areas: 
-        "sobre-mi   habilidades"
-        "proyectos  habilidades"
-        "proyectos  educacion"
-        "contacto   certificaciones";
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
 }
 
-/* Base común e inteligente para todas las tarjetas del tablero */
-.bento-item {
-    background-color: rgba(30, 30, 30, 0.6); /* Fondo oscuro traslúcido, adiós doble fondo */
-    border: 1px solid rgba(0, 255, 102, 0.15); /* Borde ciber-verde sutil */
-    border-radius: 16px; /* Esquinas redondeadas premium */
-    padding: 2.5rem;
-    backdrop-filter: blur(8px); /* Efecto cristal tecnológico */
-    
+.columna {
     display: flex;
     flex-direction: column;
-    /*justify-content: space-between;*/ /* Empuja la terminal hacia abajo si la tarjeta se estira */
-    gap: 2rem; 
-    justify-content: flex-start;
-    /* Asegura que la tarjeta use la altura real de su contenido interior */
-    height: fit-content;
-    
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    gap: 2rem;
+}
+
+.bento-item {
+    background-color: rgba(30, 30, 30, 0.6);
+    border: 1px solid rgba(0, 255, 102, 0.15);
+    border-radius: 16px;
+    padding: 2.5rem;
+    height: fit-content; /* Se ajusta a su contenido */
 }
 
 /* Efecto hover interactivo para todo el tablero */
@@ -424,13 +409,13 @@ main {
 
 /* ==========================================================================
    CONEXIÓN DIRECTA CON EL MAPA (No cambias esto nunca)
-   ========================================================================== */
+   ========================================================================== 
 .area-sobre-mi { grid-area: sobre-mi; }
 .area-habilidades { grid-area: habilidades; }
 .area-educacion { grid-area: educacion; }
 .area-proyectos { grid-area: proyectos; }
 .area-certificaciones { grid-area: certificaciones; }
-.area-contacto { grid-area: contacto; }
+.area-contacto { grid-area: contacto; }*/
 
 
 /* ==========================================================================
@@ -440,7 +425,7 @@ main {
 .about-content {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 0;
 }
 
 .section-title {
@@ -448,7 +433,7 @@ main {
     color: var(--clr-cyan-tech); /* Tu cian tecnológico */
     position: relative;
     display: inline-block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2.5rem;
 }
 
 /* Línea decorativa neón debajo del título */
@@ -467,6 +452,12 @@ main {
     font-size: 1.05rem;
     line-height: 1.6;
     color: #CCCCCC;
+    margin-bottom: 1rem;
+}
+
+/* 4. La caja de la frase: ya no necesita margen negativo */
+.about-quote-box {
+    margin-top: 1rem; 
 }
 
 /* --- Caja de la Frase (Estilo Terminal en la parte inferior) --- */
@@ -503,6 +494,7 @@ main {
 }
 
 
+
 /* ==========================================================================
    5. SECCIÓN DE HABILIDADES (Skills - Dentro de Bento Grid)
    ========================================================================== */
@@ -513,7 +505,7 @@ main {
     flex-direction: column;
     gap: 1.8rem;
     width: 100%;
-    margin-top: 0.5rem;
+    margin-top: 0rem;
 }
 
 /* Bloque individual de cada categoría */
@@ -594,7 +586,7 @@ main {
    6. ESTILOS INTERNOS DE PROYECTOS (Estructura Semántica con article)
    ========================================================================== */
 .projects-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* 💎 CLAVE 1: align-items: start evita que una tarjeta obligue a la de al lado a estirarse */
@@ -1273,24 +1265,17 @@ main {
        == ESTRUCTURA GLOBAL: CONTENEDOR MAESTRO (Móvil) ==
        ---------------------------------------------------------------------- */
     .dashboard-grid {
-        grid-template-columns: 1fr; /* Una sola columna vertical limpia */
-        
-        /* 🎯 TU EXCELENTE MÉTODO: Mapeo visual exacto del orden en celulares */
-        grid-template-areas: 
-            "sobre-mi"
-            "habilidades"
-            "proyectos"
-            "educacion"
-            "certificaciones"
-            "contacto"; 
-            
-        gap: 1.5rem; /* Separación perfecta entre bloques en pantallas pequeñas */
-
-        /* 🛡️ EL ESCUDO DE PROTECCIÓN VISUAL:
-           Mantenemos este espacio superior para que al hacer scroll, el Bento Grid 
-           no se meta debajo de tu Navbar o tus datos de contacto rápido flotantes. */
-        padding: 4rem 1rem 4rem 1rem;
+        display: flex;
+        flex-direction: column;
     }
+    .columna { display: contents; } /* Ignora el div contenedor en móvil */
+    
+    #sobre-mi        { order: 1; }
+    #habilidades     { order: 2; }
+    #proyectos       { order: 3; }
+    #educacion       { order: 4; }
+    #certificaciones { order: 5; }
+    #contacto        { order: 6; }
 
     /* Ajuste de relleno interno de las tarjetas en móviles para ganar espacio */
     .bento-item {
