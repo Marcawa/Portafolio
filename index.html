@@ -106,7 +106,6 @@
 
             <div class="dashboard-grid">
                 <div class="columna">
-
                     <section id="sobre-mi" class="bento-item area-sobre-mi">
                         <div class="about-content">
                             <h2 class="section-title">Sobre Mí</h2>
@@ -266,12 +265,29 @@
 
                     <section id="contacto" class="bento-item area-contacto">
                         <h2 class="section-title">Contacto</h2>
+                        <p class="about-text">¿Tienes una propuesta o proyecto en mente? Estoy disponible para colaborar en nuevas ideas o desafíos tecnológicos.</p>
+                        
+                        <form action="https://api.web3forms.com/submit" method="POST" class="contacto-form">
+                            <input type="hidden" name="access_key" value="0d14791d-d81c-462e-8a2c-6093cbc34403">
+                            
+                            <input type="text" name="name" placeholder="Nombre" required>
+                            <input type="email" name="email" placeholder="Correo" required>
+                            <input type="text" name="subject" placeholder="Asunto" required>
+                            <textarea name="message" placeholder="Mensaje" rows="4" required></textarea>
+                            
+                            <button type="submit" class="btn-contacto-submit">Enviar mensaje</button>
+                        </form>
+
+                        <div class="contacto-social-links">
+                            <a href="https://wa.me/0987356722" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://github.com/Marcawa" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="mailto:mrandres192@gmail.com"><i class="fas fa-envelope"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
                     </section>
-                    
                 </div>
 
                 <div class="columna">
-
                     <section id="habilidades" class="bento-item area-habilidades">
                         <div class="skills-header">
                             <h2 class="section-title">Habilidades</h2>
@@ -499,9 +515,7 @@
                             </a>
                         </div>
                     </section>
-
                 </div>
-
             </div>
         </main>
 
