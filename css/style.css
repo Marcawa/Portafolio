@@ -34,6 +34,9 @@ a {
     text-decoration: none;
 }
 
+.temporal-color{
+    color: var(--clr-cyan-tech);
+}
 
 /* ==========================================================================
    2. NAVBAR Y MENÚ DESPLEGABLE (Responsive y con Estados de Color Controlados)
