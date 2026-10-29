@@ -924,13 +924,16 @@ main {
 
 /* Etiqueta de Nivel Académico Única por Grupo */
 .timeline-level-label {
-    font-size: 0.8rem;
+    font-size: 0.95rem; /* 🚀 Ajusta aquí el tamaño un poquito más grande si lo deseas */
     font-weight: 700;
     color: var(--clr-cyan-tech);
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin-bottom: -0.5rem;
-    padding-left: 2.5rem;
+    
+    /* 🚀 SOLUCIÓN PARA MOVERLO A LA IZQUIERDA */
+    padding-left: 0;          /* Limpiamos el padding anterior */
+    margin-left: 1rem;     /* Lo desplaza hacia la izquierda acercándolo a la línea principal */
 }
 
 .timeline-item {
@@ -1830,50 +1833,108 @@ main {
        == SECCIÓN 7: EDUCACIÓN (Responsive Móvil / Tablets) ==
        ---------------------------------------------------------------------- */
     .education-timeline {
-        padding-left: 1.2rem; 
+        padding-left: 0.8rem; 
         align-items: flex-start;
     }
 
-    /* Mantenemos la línea vertical visible y perfectamente alineada */
+    /* Línea vertical ajustada a la izquierda */
     .education-timeline::before {
         display: block !important;
-        left: 13px; 
+        left: 10px; 
     }
 
     .timeline-level-group {
         gap: 1.2rem;
     }
 
-    /* Aseguramos que la etiqueta de nivel mantenga su espacio correcto en móvil */
     .timeline-level-label {
-        padding-left: 1.8rem;
+        font-size: clamp(0.90rem, 2.5vw, 0.85rem); /* 🚀 Tamaño responsivo y un poco más grande */
+        padding-left: 0;
+        margin-left: 0.5rem; /* 🚀 Ajuste hacia la izquierda en móvil/tablet */
     }
 
     .timeline-item {
         flex-direction: row;
         align-items: flex-start;
-        gap: 1rem;
+        gap: 0.8rem;
     }
 
     .timeline-marker {
         display: flex !important;
-        /* Posicionamiento fluido adaptado al nuevo padding móvil */
         left: 0; 
         margin-top: 0.2rem;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .timeline-marker i {
+        font-size: 0.65rem;
     }
 
+    /* 🚀 SOLUCIÓN CLAVE PARA MÓVIL: Tarjeta flexible que reordena las insignias y evita choques */
     .timeline-content {
         text-align: left;
-        padding: 1.4rem;
+        padding: 1.2rem;
         width: 100%;
+        box-sizing: border-box;
+        
+        /* Convertimos el contenedor en un flex column ordenado para evitar absolute overlaps en pantallas chicas */
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
     }
 
+    /* Hacemos que las insignias dejen de ser absolutamente intrusivas en móviles estrechos 
+       y pasen a formar parte ordenada del flujo superior de la tarjeta */
+    .timeline-badge-honor,
+    .timeline-badge-eude {
+        position: static !important; /* Desactiva el absolute en móvil para que no tapen la fecha */
+        align-self: center;      /* Se alinean ordenadamente arriba */
+        text-align: center !important; /* Centra el texto dentro del badge */
+        margin-top: 0.4rem;           /* 🚀 Separación superior / respecto a elementos previos */
+        margin-bottom: 0.8rem;        /* 🚀 Espacio de separación claro con la fecha y el contenido de abajo */
+        font-size: 0.65rem;
+        padding: 0.3rem 0.8rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .timeline-badge-eude {
+        font-size: 0.56rem;
+    }
+
+    /* 🚀 TIPOGRAFÍAS 100% FLUIDAS CON CLAMP (Adiós a textos gigantes en móviles) */
     .timeline-date {
+        font-size: clamp(0.7rem, 2.5vw, 0.8rem);
         justify-content: flex-start;
+        order: 2; /* Asegura que la fecha y insignias queden arriba de forma limpia */
+    }
+
+    .timeline-title {
+        font-size: clamp(1rem, 4vw, 1.2rem) !important; /* Se reduce fluidamente según el ancho de la pantalla */
+        line-height: 1.2;
+        padding-right: 0 !important; /* Eliminamos el padding fijo de escritorio que ya no hace falta */
+        order: 2;
+    }
+
+    .timeline-degree {
+        font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    }
+
+    .timeline-institution {
+        font-size: clamp(0.85rem, 3vw, 1rem);
+    }
+
+    .timeline-description {
+        font-size: clamp(0.8rem, 2.8vw, 0.9rem);
+        order: 3;
     }
 
     .timeline-status {
         justify-content: flex-start;
+        order: 4;
+        margin-top: 0.5rem;
     }
 
 
