@@ -383,7 +383,6 @@ main {
     z-index: 10;
     text-decoration: none;
     transition: transform 0.3s ease, filter 0.3s ease;
-
     max-width: 280px; 
     width: max-content;
 }
@@ -398,7 +397,6 @@ main {
     justify-content: center;
     position: relative;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-
     width: 100%;
 }
 
@@ -406,61 +404,54 @@ main {
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: var(--clr-white);
     text-transform: uppercase;
-
     text-align: center;
     line-height: 1.3;
 }
 
-/* --- Marcos con Muesca Cortada (Corner Cut Style) --- */
+/* --- MUESCAS MODULARES DE ESQUINAS --- */
+.muesca-br { border-bottom-right-radius: 12px; }
+.muesca-bl { border-bottom-left-radius: 12px; }
+.muesca-tr { border-top-right-radius: 12px; }
+.muesca-tl { border-top-left-radius: 12px; }
 
-/* 1. Superior Izquierda: CIAN */
-.frame-cyan {
+/* --- VARIABLES MODULARES DE COLOR --- */
+.color-cyan {
     border: 1px solid var(--clr-cyan-tech);
     box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
-    border-bottom-right-radius: 12px; /* Muesca recortada característica */
 }
-.frame-cyan .hero-card-title { color: var(--clr-cyan-tech); }
+.color-cyan .hero-card-title { color: var(--clr-cyan-tech); }
 
-/* 2. Superior Derecha: VERDE NEÓN */
-.frame-green {
+.color-green {
     border: 1px solid var(--clr-neon-green);
     box-shadow: 0 0 12px rgba(0, 255, 102, 0.2);
-    border-bottom-left-radius: 12px;
 }
-.frame-green .hero-card-title { color: var(--clr-neon-green); }
+.color-green .hero-card-title { color: var(--clr-neon-green); }
 
-/* 3. Inferior Izquierda: MAGENTA */
-.frame-magenta {
+.color-magenta {
     border: 1px solid var(--clr-magenta-bold);
     box-shadow: 0 0 12px rgba(255, 0, 255, 0.2);
-    border-top-right-radius: 12px;
 }
-.frame-magenta .hero-card-title { color: var(--clr-magenta-bold); }
+.color-magenta .hero-card-title { color: var(--clr-magenta-bold); }
 
-/* 4. Inferior Derecha: BLANCO */
-.frame-white {
+.color-white {
     border: 1px solid var(--clr-white);
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    border-top-left-radius: 12px;
 }
-.frame-white .hero-card-title { color: var(--clr-white); }
+.color-white .hero-card-title { color: var(--clr-white); }
 
-/* --- Posicionamiento en las 4 Esquinas (Escritorio) --- */
+/* --- COORDENADAS DE ESQUINAS EN ESCRITORIO --- */
 .hero-card-tl { top: 3.5rem; left: 3rem; }
 .hero-card-tr { top: 3.5rem; right: 3rem; }
 .hero-card-bl { bottom: 3.5rem; left: 3rem; }
 .hero-card-br { bottom: 3.5rem; right: 3rem; }
 
-/* --- Efectos Hover Reactivos --- */
-.hero-card:hover {
-    transform: translateY(-3px) scale(1.05);
-}
-.hero-card:hover .frame-cyan { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
-.hero-card:hover .frame-green { box-shadow: 0 0 20px rgba(0, 255, 102, 0.5); }
-.hero-card:hover .frame-magenta { box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
-.hero-card:hover .frame-white { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+/* --- HOVER REACTIVO --- */
+.hero-card:hover { transform: translateY(-3px) scale(1.05); }
+.hero-card:hover .color-cyan { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+.hero-card:hover .color-green { box-shadow: 0 0 20px rgba(0, 255, 102, 0.5); }
+.hero-card:hover .color-magenta { box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
+.hero-card:hover .color-white { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
 
 
 /* ==========================================================================
@@ -896,7 +887,7 @@ main {
 .project-card-link:hover .project-btn i { transform: translateX(4px); }
 
 /* ==========================================================================
-   7. SECCIÓN DE EDUCACIÓN (Estilo Línea de Tiempo Git / Terminal)
+   7. SECCIÓN DE EDUCACIÓN (Arquitectura Escalable por Niveles Académicos)
    ========================================================================== */
 
 .education-timeline {
@@ -904,37 +895,60 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
-    padding-left: 1.5rem; /* Espacio para la línea vertical guía */
-    margin-top: 0.5rem;
-    text-align: left; /* Alineación limpia a la izquierda para escritorio */
+    padding-left: 0.5rem;
+    margin-top: 1rem;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* La línea vertical tecnológica que simula una rama (branch) de Git */
+/* Línea vertical central de Git Branch */
 .education-timeline::before {
     content: '';
     position: absolute;
     top: 5px;
-    left: 7px;
+    left: 14px;
     width: 2px;
     height: calc(100% - 10px);
     background: linear-gradient(to bottom, var(--clr-cyan-tech), rgba(0, 255, 102, 0.2));
 }
 
+/* Grupo de Nivel Académico (Agrupa títulos bajo un mismo nivel) */
+.timeline-level-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+
+/* Etiqueta de Nivel Académico Única por Grupo */
+.timeline-level-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--clr-cyan-tech);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: -0.5rem;
+    padding-left: 2.5rem;
+}
+
 .timeline-item {
     position: relative;
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
     width: 100%;
+    align-items: flex-start;
+    cursor: pointer;
 }
 
 /* Nodos interactivos de la línea de tiempo */
 .timeline-marker {
-    position: absolute;
-    left: -1.5rem;
-    left: calc(-1.5rem - 1px); /* Ajuste milimétrico sobre la línea guía */
-    width: 32px;
-    height: 32px;
-    background-color: #141414; /* Consola profunda */
+    position: relative;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background-color: #141414;
     border: 2px solid var(--clr-cyan-tech);
     border-radius: 50%;
     display: flex;
@@ -942,70 +956,129 @@ main {
     justify-content: center;
     z-index: 2;
     transition: all 0.3s ease;
+    margin-top: 0.2rem;
 }
 
 .timeline-marker i {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--clr-cyan-tech);
-    transition: color 0.3s ease;
 }
 
-/* Contenido de cada tarjeta educativa */
+/* Tarjeta contenedora con borde resplandeciente permanente */
 .timeline-content {
-    background-color: #141414; /* Sincronizado con tus terminales interiores */
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 255, 102, 0.4);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.12);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.8rem;
+    
+    /* 🚀 AISLADO Y FORZADO: Ancho idéntico para todas las tarjetas de esta sección */
+    flex: 1;
+    min-width: 0;
     width: 100%;
+    box-sizing: border-box;
+    
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    position: relative;
     transition: all 0.3s ease;
+
+    background-size: 105px;
+    background-position: right 1.5rem center;
+    background-repeat: no-repeat;
+}
+
+/* --- INSIGNIAS ABSOLUTAS INTERACTIVAS --- */
+
+.timeline-badge-honor {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.6rem;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #1A1A1A;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-badge-honor:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.timeline-badge-eude {
+    position: absolute;
+    bottom: 1.4rem;
+    right: 1.6rem;
+    background: linear-gradient(135deg, #AA151B 0%, #F1BF00 50%, #AA151B 100%);
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 0 10px rgba(170, 21, 27, 0.5);
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-badge-eude:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(170, 21, 27, 0.8);
 }
 
 .timeline-date {
-    font-size: 0.85rem;
-    color: var(--clr-neon-green); /* Verde neón para el bloque temporal */
+    font-size: 0.8rem;
+    color: var(--clr-neon-green);
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    letter-spacing: 0.5px;
 }
 
-/* Contenedor del título (h3) que alinea el contenido en una sola línea */
 .timeline-title {
-    font-size: 1.25rem;
-    color: var(--clr-white); /* El guion separador "-" heredará este blanco */
+    font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.3;
+    padding-right: 9.5rem;
 }
 
-/* El Grado académico: Resaltado con tu Magenta de las variables globales */
 .timeline-degree {
     display: block;
     color: var(--clr-white);
 }
 
-/* La Institución: Conserva el color blanco limpio dentro del encabezado */
 .timeline-institution {
     display: block;
     color: var(--clr-magenta-bold);
-    font-weight: 900; /* Un poco más ligera para contrastar con el grado */
-
-    font-size: 1.05rem; /* Un pelín más pequeña que el grado para dar jerarquía */
-    margin-top: 0.2rem;  /* Espaciado perfecto hacia abajo */
+    font-weight: 900;
+    font-size: 1rem;
+    margin-top: 0.2rem;
 }
 
-/* El párrafo inferior: Pasa a ser una descripción secundaria limpia */
 .timeline-description {
-    font-size: 0.95rem;
-    color: #AAAAAA; /* Gris suave para jerarquía de lectura */
+    font-size: 0.9rem;
+    color: #AAAAAA;
     line-height: 1.4;
     margin-top: 0.2rem;
 }
 
-/* Sistema de estados (Badges de Estado del commit/estudio) */
 .timeline-status {
     margin-top: 0.3rem;
     display: flex;
@@ -1014,70 +1087,61 @@ main {
 .status-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
+    gap: 0.4rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 20px;
     background-color: rgba(30, 30, 30, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Punto pulsante para lo que está en curso */
 .status-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     display: inline-block;
 }
 
-/* 1. COMPLETADO (Colegio Militar) -> Verde Neón: Éxito/Finalizado */
 .status-completed {
     color: var(--clr-neon-green);
     border-color: rgba(0, 255, 102, 0.2);
 }
 .status-completed .status-dot {
     background-color: var(--clr-neon-green);
-    box-shadow: 0 0 8px var(--clr-neon-green);
+    box-shadow: 0 0 6px var(--clr-neon-green);
 }
 
-/* 2. EN CURSO (Tecnológico Espíritu Santo) -> Cian: Proceso Activo */
 .status-current {
     color: var(--clr-cyan-tech);
     border-color: rgba(0, 255, 255, 0.2);
 }
 .status-current .status-dot {
     background-color: var(--clr-cyan-tech);
-    box-shadow: 0 0 8px var(--clr-cyan-tech);
+    box-shadow: 0 0 6px var(--clr-cyan-tech);
 }
 
-/* 3. PLANIFICADO / FUTURO (Seminario de Graduación) -> Blanco: Estado Espera */
 .status-upcoming {
     color: var(--clr-cyan-tech);
     border-color: rgba(0, 255, 255, 0.2);
 }
 .status-upcoming .status-dot {
     background-color: var(--clr-cyan-tech);
-    box-shadow: 0 0 8px var(--clr-cyan-tech);
+    box-shadow: 0 0 6px var(--clr-cyan-tech);
 }
 
-/* 🔥 EFECTOS HOVER COMPUESTOS E INTERACTIVOS */
+/* EFECTOS HOVER */
 .timeline-item:hover .timeline-marker {
     border-color: var(--clr-neon-green);
     transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
-}
-
-.timeline-item:hover .timeline-marker i {
-    color: var(--clr-neon-green);
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
 }
 
 .timeline-item:hover .timeline-content {
-    border-color: rgba(0, 255, 102, 0.2);
-    box-shadow: 0 6px 20px rgba(0, 255, 102, 0.03);
-    transform: translateX(4px); /* Desplazamiento sutil tecnológico */
+    border-color: var(--clr-neon-green);
+    box-shadow: 0 6px 18px rgba(0, 255, 102, 0.15);
+    transform: translateX(4px);
 }
-
 
 /* ==========================================================================
    8. SECCIÓN DE CERTIFICACIONES (Tarjetas con Fondo de Imagen Dinámico)
@@ -1555,13 +1619,12 @@ main {
     .hero-section {
         min-height: auto !important;
         max-height: none !important;
-        /* Espaciado superior limpio para que las tarjetas no colisionen con el Navbar */
-        padding: 5rem 0.8rem 4rem 0.8rem;
+        padding: 2.5rem 1rem 3.5rem 1rem;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative; /* Clave absoluta para que las tarjetas se ubiquen respecto al contenedor hero */
+        position: relative;
     }
 
     /* El contenedor principal de texto y avatar fluye de manera natural y ordenada abajo */
@@ -1571,66 +1634,78 @@ main {
         text-align: center;
         gap: 2rem;
         width: 100%;
-        margin-top: 2.5rem; /* Margen para dar aire limpio debajo de las tarjetas superiores */
+        margin-top: 0;
     }
 
-    /* --- POSICIONAMIENTO FLUIDO DE LAS 4 TARJETAS EN MÓVIL --- */
+    /* --- SISTEMA DE ENMARCADO FLUIDO PARA MÓVILES --- */
+    /* El avatar-box se convierte en el contenedor de referencia visual */
+    .hero-avatar-box {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Padding generoso vertical para albergar las tarjetas sin que choquen con la foto */
+        padding: 4rem 0 3.5rem 0; 
+    }
+
+    .avatar-wrapper {
+        width: clamp(150px, 40vw, 200px); /* Tamaño fluido inteligente según el ancho de la pantalla */
+        height: clamp(150px, 40vw, 200px);
+        margin: 0 auto;
+        z-index: 2; /* Asegura que la foto esté nítida y al frente */
+    }
+
+    /* Las 4 tarjetas pasan a posicionarse en relación al avatar-box dinámicamente */
     .hero-card {
-        position: absolute; /* Vuelven a ser absolutas para colocarse estratégicamente a los lados */
-        z-index: 10;
-        width: 44%;         /* Ocupan casi la mitad del ancho cada una para mantener proporción simétrica */
-        max-width: 160px;   /* Límite para evitar que crezcan de más en pantallas anchas de celular */
+        position: absolute;
+        z-index: 5;
+        width: 44%; /* Ocupan casi la mitad del espacio lateral */
+        max-width: 170px;
     }
 
+    /* Coordenadas relativas fluidas que evitan la solapación */
     /* Coordenadas exactas alrededor del círculo del avatar */
     .hero-card-tl { 
-        top: 5.2rem; 
+        top: 3.4rem; 
         left: 0.5rem; 
     }
     
     .hero-card-tr { 
-        top: 5.2rem; 
+        top: 3.4rem; 
         right: 0.5rem; 
     }
     
     .hero-card-bl { 
-        top: 16.2rem;  /* Altura perfecta para flanquear los costados del avatar */
+        top: 17.2rem;  /* Altura perfecta para flanquear los costados del avatar */
         left: 0.5rem; 
     }
     
     .hero-card-br { 
-        top: 16.2rem;  
+        top: 17.2rem;  
         right: 0.5rem; 
     }
 
-    /* Estilo compacto de los marcos optimizado para pantallas táctiles */
     .hero-card-frame {
-        padding: 0.4rem 0.3rem;
+        padding: 0.45rem 0.35rem;
         text-align: center;
-        min-height: 38px;
+        min-height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .hero-card-title {
-        font-size: 0.6rem; /* Letra optimizada para que los nombres largos encajen perfectamente en 2 o 3 líneas */
-        line-height: 1.1;
-    }
-
-    /* Ajustes proporcionales del avatar y textos para que respiren con las tarjetas al lado */
-    .avatar-wrapper {
-        width: 180px;
-        height: 180px;
-        margin: 0 auto;
+        font-size: clamp(0.55rem, 2.2vw, 0.7rem); /* Tipografía adaptativa que jamás rompe la caja */
+        line-height: 1.15;
     }
 
     .hero-name {
-        font-size: 2.3rem;
+        font-size: clamp(2rem, 6vw, 2.8rem);
     }
 
     .hero-title {
-        font-size: 1.4rem;
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
     }
 
     .hero-actions {
@@ -1752,44 +1827,53 @@ main {
 
 
     /* ----------------------------------------------------------------------
-       == SECCIÓN 7: EDUCACIÓN (Responsive Móvil) ==
+       == SECCIÓN 7: EDUCACIÓN (Responsive Móvil / Tablets) ==
        ---------------------------------------------------------------------- */
     .education-timeline {
-        /* Mantenemos el padding izquierdo para que la línea y los nodos tengan espacio */
-        padding-left: 1.5rem; 
-        align-items: flex-start; /* Evita que se fuerce al centro */
+        padding-left: 1.2rem; 
+        align-items: flex-start;
     }
 
-    /* ¡Forzamos que la línea vertical siga visible! */
+    /* Mantenemos la línea vertical visible y perfectamente alineada */
     .education-timeline::before {
         display: block !important;
-        left: 7px; /* Asegura la posición exacta del eje */
+        left: 13px; 
+    }
+
+    .timeline-level-group {
+        gap: 1.2rem;
+    }
+
+    /* Aseguramos que la etiqueta de nivel mantenga su espacio correcto en móvil */
+    .timeline-level-label {
+        padding-left: 1.8rem;
     }
 
     .timeline-item {
-        flex-direction: row; /* Mantiene la orientación horizontal (nodo al lado del texto) */
+        flex-direction: row;
         align-items: flex-start;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
-    /* ¡Forzamos que los círculos con los iconos sigan visibles! */
     .timeline-marker {
         display: flex !important;
-        left: calc(-1.5rem - 1px); /* Mantiene el ajuste milimétrico sobre la línea */
+        /* Posicionamiento fluido adaptado al nuevo padding móvil */
+        left: 0; 
+        margin-top: 0.2rem;
     }
 
     .timeline-content {
-        text-align: left; /* Alineación limpia a la izquierda igual que en PC */
-        padding: 1.2rem;   /* Un poquito menos de padding para pantallas pequeñas */
+        text-align: left;
+        padding: 1.4rem;
         width: 100%;
     }
 
     .timeline-date {
-        justify-content: flex-start; /* Alinea la fecha a la izquierda */
+        justify-content: flex-start;
     }
 
     .timeline-status {
-        justify-content: flex-start; /* Alinea los badges a la izquierda */
+        justify-content: flex-start;
     }
 
 

@@ -61,26 +61,26 @@
             <section id="hero" class="hero-section">
                 <!-- 🎯 LAS 4 TARJETAS ESQUINERA / SHORTCUTS ACCESIBLES -->
                 <a href="#educacion" class="hero-card hero-card-tl" title="Ir a Educación - Bachiller">
-                    <div class="hero-card-frame frame-cyan">
+                    <div class="hero-card-frame color-white muesca-br">
                         <span class="hero-card-title">Bachiller en Ciencias</span>
                     </div>
                 </a>
 
                 <a href="#educacion" class="hero-card hero-card-tr" title="Ir a Educación - Software">
-                    <div class="hero-card-frame frame-green">
-                        <span class="hero-card-title">Tecnología Superior en Desarrollo de Software</span>
+                    <div class="hero-card-frame color-green muesca-bl">
+                        <span class="hero-card-title">Tecnólogo Superior en Desarrollo de Software</span>
                     </div>
                 </a>
 
                 <a href="#educacion" class="hero-card hero-card-bl" title="Ir a Educación - Redes y Telecomunicaciones">
-                    <div class="hero-card-frame frame-magenta">
-                        <span class="hero-card-title">Tecnología Superior Universitaria en Gestión de Redes y Telecomunicaciones</span>
+                    <div class="hero-card-frame color-cyan muesca-tr">
+                        <span class="hero-card-title">Tecnólogo Universitario en Gestión de Redes y Telecomunicaciones</span>
                     </div>
                 </a>
 
                 <a href="#educacion" class="hero-card hero-card-br" title="Ir a Educación - Magíster">
-                    <div class="hero-card-frame frame-white">
-                        <span class="hero-card-title">Maestría tecnólogica en Desarrollo e Innovación Digital en los Negocios</span>
+                    <div class="hero-card-frame color-magenta muesca-tl">
+                        <span class="hero-card-title">Magister Tecnológico en Desarrollo e Innovación Digital en los Negocios</span>
                     </div>
                 </a>
 
@@ -374,47 +374,87 @@
                         
                         <div class="education-timeline">
 
-                            <!-- Ítem 1: Colegio Militar -->
-                            <article class="timeline-item">
-                                <div class="timeline-marker">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 2016 – 2022</span>
-                                    <h3 class="timeline-title">
-                                        <span class="timeline-degree">Bachiller en Ciencias</span>
-                                        <span class="timeline-institution">Colegio Militar Teniente Hugo Ortiz</span>
-                                    </h3>
-                                    <p class="timeline-description">Educación con enfoque disciplinado, trabajo en equipo y liderazgo.</p>
-                                    <div class="timeline-status">
-                                        <span class="status-badge status-completed">
-                                            <span class="status-dot"></span> COMPLETADO
-                                        </span>
+                            <!-- NIVEL 2: Bachillerato -->
+                            <div class="timeline-level-group">
+                                <div class="timeline-level-label">Título de 2do Nivel</div>
+                                
+                                <article class="timeline-item" style="background-image: url('img/logo-tahuis.png');" onclick="openModal('drive-bachillerato')">
+                                    <div class="timeline-marker">
+                                        <i class="fas fa-shield-alt"></i>
                                     </div>
-                                </div>
-                            </article>
-
-                            <!-- Ítem 2: Carrera Principal -->
-                            <article class="timeline-item">
-                                <div class="timeline-marker">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 2023 - 2026</span>
-                                    <h3 class="timeline-title">
-                                        <span class="timeline-degree">Tecnología Superior en Desarrollo de Software</span>
-                                        <span class="timeline-institution">Tecnológico Universitario Espíritu Santo</span>
-                                    </h3>
-                                    <p class="timeline-description">Graduado</p>
-                                    <div class="timeline-status">
-                                        <span class="status-badge status-completed">
-                                            <span class="status-dot"></span> COMPLETADO
-                                        </span>
+                                    <div class="timeline-content">
+                                        <div class="timeline-badge-honor" onclick="event.stopPropagation(); openModal('drive-mencion-bachillerato')">
+                                            <i class="fas fa-award"></i> Mención de Honor
+                                        </div>
+                                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> 2016 – 2022</span>
+                                        <h3 class="timeline-title">
+                                            <span class="timeline-degree">Bachiller en Ciencias</span>
+                                            <span class="timeline-institution">Colegio Militar Teniente Hugo Ortiz</span>
+                                        </h3>
+                                        <p class="timeline-description">Educación con enfoque disciplinado, trabajo en equipo y liderazgo.</p>
+                                        <div class="timeline-status">
+                                            <span class="status-badge status-completed">
+                                                <span class="status-dot"></span> COMPLETADO
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
+                                </article>
 
-                            <!-- Ítem 3: Seminario de Graduación -->
+                                
+                            </div>
+
+                            <!-- NIVEL 3: Tecnologías (Agrupadas bajo una sola etiqueta de nivel superior) -->
+                            <div class="timeline-level-group">
+                                <div class="timeline-level-label">Título de 3er Nivel</div>
+                                
+                                <!-- Ítem A: Desarrollo de Software -->
+                                <article class="timeline-item" style="background-image: url('img/logo-utes.png');" onclick="openModal('drive-software')">
+                                    <div class="timeline-marker">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-badge-honor" onclick="event.stopPropagation(); openModal('drive-mencion-software')">
+                                            <i class="fas fa-award"></i> Mención de Honor
+                                        </div>
+                                        <div class="timeline-badge-eude" onclick="event.stopPropagation(); openModal('drive-eude')">
+                                            <i class="fas fa-certificate"></i> Certificación EUDE
+                                        </div>
+                                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> 2023 - 2026</span>
+                                        <h3 class="timeline-title">
+                                            <span class="timeline-degree">Tecnología Superior en Desarrollo de Software</span>
+                                            <span class="timeline-institution">Tecnológico Universitario Espíritu Santo</span>
+                                        </h3>
+                                        <p class="timeline-description">Graduado</p>
+                                        <div class="timeline-status">
+                                            <span class="status-badge status-completed">
+                                                <span class="status-dot"></span> COMPLETADO
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <!-- Ítem B: Redes y Telecomunicaciones (Comparte el mismo nivel 3 sin repetir la etiqueta) -->
+                                <article class="timeline-item" style="background-image: url('img/logo-utes.png');" onclick="openModal('drive-redes')">
+                                    <div class="timeline-marker">
+                                        <i class="fas fa-network-wired"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> 2026 - Presente</span>
+                                        <h3 class="timeline-title">
+                                            <span class="timeline-degree">Tecnología Superior Universitaria en Gestión de Redes y Telecomunicaciones</span>
+                                            <span class="timeline-institution">Tecnológico Universitario Espíritu Santo</span>
+                                        </h3>
+                                        <p class="timeline-description">Próximo a Graduación</p>
+                                        <div class="timeline-status">
+                                            <span class="status-badge status-current">
+                                                <span class="status-dot"></span> EN CURSO
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <!-- Ítem 3: Seminario de Graduación 
                             <article class="timeline-item">
                                 <div class="timeline-marker">
                                     <i class="fas fa-certificate"></i>
@@ -432,28 +472,32 @@
                                         </span>
                                     </div>
                                 </div>
-                            </article>
+                            </article>-->
 
-                            <!-- Ítem 4: Carrera Secundaria -->
-                            <article class="timeline-item">
-                                <div class="timeline-marker">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="timeline-content">
-                                    <span class="timeline-date"><i class="far fa-calendar-alt"></i>2026 - Presente</span>
-                                    <h3 class="timeline-title">
-                                        <span class="timeline-degree">Tecnología Superior Universitaria en Gestión de Redes y Telecomunicaciones</span>
-                                        <span class="timeline-institution">Tecnológico Universitario Espíritu Santo</span>
-                                    </h3>
-                                    <p class="timeline-description">Próximo a Graduación</p>
-                                    <div class="timeline-status">
-                                        <span class="status-badge status-current">
-                                            <span class="status-dot"></span> EN CURSO
-                                        </span>
+                            <!-- NIVEL 4: Maestría -->
+                            <div class="timeline-level-group">
+                                <div class="timeline-level-label">Título de 4to Nivel</div>
+                                
+                                <article class="timeline-item" style="background-image: url('img/logo-utes.png');" onclick="openModal('drive-maestria')">
+                                    <div class="timeline-marker">
+                                        <i class="fas fa-user-graduate"></i>
                                     </div>
-                                </div>
-                            </article>
-
+                                    <div class="timeline-content">
+                                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> 2027 - Presente</span>
+                                        <h3 class="timeline-title">
+                                            <span class="timeline-degree">Maestría Tecnológica en Desarrollo e Innovación Digital en los Negocios</span>
+                                            <span class="timeline-institution">Tecnológico Universitario Espíritu Santo</span>
+                                        </h3>
+                                        <p class="timeline-description">Próximo a Graduación</p>
+                                        <div class="timeline-status">
+                                            <span class="status-badge status-upcoming">
+                                                <span class="status-dot"></span> PRÓXIMAMENTE
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            
                         </div>
                     </section>
 
