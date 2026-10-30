@@ -907,7 +907,7 @@ main {
     content: '';
     position: absolute;
     top: 5px;
-    left: 14px;
+    left: -10px;
     width: 2px;
     height: calc(100% - 10px);
     background: linear-gradient(to bottom, var(--clr-cyan-tech), rgba(0, 255, 102, 0.2));
@@ -933,7 +933,7 @@ main {
     
     /* 🚀 SOLUCIÓN PARA MOVERLO A LA IZQUIERDA */
     padding-left: 0;          /* Limpiamos el padding anterior */
-    margin-left: 1rem;     /* Lo desplaza hacia la izquierda acercándolo a la línea principal */
+    margin-left: -0.3rem;     /* Lo desplaza hacia la izquierda acercándolo a la línea principal */
 }
 
 .timeline-item {
@@ -988,10 +988,53 @@ main {
     position: relative;
     transition: all 0.3s ease;
 
-    background-size: 105px;
-    background-position: right 1.5rem center;
-    background-repeat: no-repeat;
+    overflow: hidden; /* Vital para que la imagen respete los bordes redondeados */
 }
+
+/* Base del Watermark que cubre TODO el contenedor con fundido de opacidad */
+.timeline-content.has-watermark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+
+    /* 
+      1. Usamos tu variable de imagen.
+      2. Cubrimos todo el contenedor con 'cover'.
+      3. 'mix-blend-mode: screen;' hace que el fondo blanco de la imagen desaparezca 
+         y se funda de forma limpia con el color oscuro de tu tarjeta.
+    */
+    background-image: var(--watermark-img);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+    opacity: 0.18; /* Ajusta este valor si quieres que se note un poco más o menos */
+    mix-blend-mode: screen; /* Clave para eliminar el fondo blanco y que se vea integrado al fondo oscuro */
+}
+
+/* Garantiza que todo el texto, fechas e insignias estén por encima del fondo */
+.timeline-content > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   VARIANTES DE INSTITUCIONES (Solo cambian la imagen)
+   ========================================================================== */
+.timeline-content.bg-tho::after {
+    background-image: url('../img/LogoFondoTHO.png');
+}
+
+.timeline-content.bg-tes::after {
+    background-image: url('../img/LogoFondoTESForce.png');
+}
+
+.timeline-content.bg-Mgtr::after {
+    background-image: url('../img/LogoFondoTESRedForce.png');
+}
+
 
 /* --- INSIGNIAS ABSOLUTAS INTERACTIVAS --- */
 
@@ -1833,14 +1876,14 @@ main {
        == SECCIÓN 7: EDUCACIÓN (Responsive Móvil / Tablets) ==
        ---------------------------------------------------------------------- */
     .education-timeline {
-        padding-left: 0.8rem; 
+        padding-left: 0.4rem; 
         align-items: flex-start;
     }
 
     /* Línea vertical ajustada a la izquierda */
     .education-timeline::before {
         display: block !important;
-        left: 10px; 
+        left: 2px; 
     }
 
     .timeline-level-group {
@@ -1901,7 +1944,7 @@ main {
     }
 
     .timeline-badge-eude {
-        font-size: 0.56rem;
+        font-size: 0.45rem;
     }
 
     /* 🚀 TIPOGRAFÍAS 100% FLUIDAS CON CLAMP (Adiós a textos gigantes en móviles) */
