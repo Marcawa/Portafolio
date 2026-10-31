@@ -185,8 +185,8 @@
                                 </a>
                             </article>
 
-                            <article class="project-card">
-                                <a href="https://marcawa.github.io/NexoMarcosRomero/" class="project-card-link">
+                            <article class="project-card pulse-button-effect">
+                                <a href="https://marcawa.github.io/NexoMarcosRomero/" class="project-card-link has-watermark bg-ecommerce">
                                     <div class="project-card-top">
                                         <div class="project-icon-box card-green">
                                             <i class="fas fa-shopping-cart"></i>
@@ -382,7 +382,7 @@
                                     <div class="timeline-marker">
                                         <i class="fas fa-shield-alt"></i>
                                     </div>
-                                    <div class="timeline-content has-watermark bg-tho">
+                                    <div class="timeline-content pulse-button-effect has-watermark bg-tho">
                                         <div class="timeline-badge-honor" onclick="event.stopPropagation(); openModal('drive-mencion-bachillerato')">
                                             <i class="fas fa-award"></i> Mención de Honor
                                         </div>
@@ -412,7 +412,7 @@
                                     <div class="timeline-marker">
                                         <i class="fas fa-graduation-cap"></i>
                                     </div>
-                                    <div class="timeline-content has-watermark bg-tes">
+                                    <div class="timeline-content pulse-button-effect has-watermark bg-tes">
                                         <div class="timeline-badge-honor" onclick="event.stopPropagation(); openModal('drive-mencion-software')">
                                             <i class="fas fa-award"></i> Mención de Honor
                                         </div>
@@ -638,6 +638,35 @@
                 <img src="img/Logo.png" alt="Logo" class="footer-bottom-logo">
             </div>
         </footer>
+
+        <!-- ==========================================================================
+            MODAL MAESTRO REUTILIZABLE (Único para todo el portafolio)
+        ========================================================================== -->
+        <div id="universalModal" class="modal-overlay" onclick="closeModal()">
+            <div class="modal-container" onclick="event.stopPropagation()">
+                <!-- Botón de Cierre -->
+                <button class="modal-close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <!-- Cabecera opcional para títulos dinámicos -->
+                <div class="modal-header">
+                    <h3 id="modalTitle">Visualización de Credencial</h3>
+                </div>
+
+                <!-- Contenedor del documento (Google Drive / PDF / Imagen) -->
+                <div class="modal-body">
+                    <iframe id="modalDriveFrame" src="" width="100%" height="450px" style="border:none;" allowfullscreen></iframe>
+                </div>
+
+                <!-- Pie de página con botón de acción externo (Opcional) -->
+                <div class="modal-footer">
+                    <a id="modalDriveLink" href="" target="_blank" class="modal-external-btn">
+                        <i class="fas fa-external-link-alt"></i> Ver en Google Drive
+                    </a>
+                </div>
+            </div>
+        </div>
         
         <script>
             const navToggle = document.getElementById('navToggle');
@@ -715,6 +744,71 @@
                     startScan();
                 });
             });
+        </script>
+
+        <script>
+            /* ==========================================================================
+            CONTROLADOR DE MODAL ÚNICO Y REUTILIZABLE
+            ========================================================================== */
+
+            // Base de datos simulada o mapeo de enlaces de Google Drive orientada a escalabilidad
+            const driveDocuments = {
+                'drive-bachillerato': {
+                    title: 'Título de Bachiller en Ciencias',
+                    url: 'https://drive.google.com/file/d/1ZJFYbAFkmsGu4hT1QxaxC2uL6NkcEhX9/preview' // Reemplaza con tu link de inserción de Drive
+                },
+                'drive-mencion-bachillerato': {
+                    title: 'Certificado de Mención de Honor - Bachillerato',
+                    url: 'https://drive.google.com/file/d/TU_ID_DE_DRIVE_AQUÍ/preview'
+                },
+                'drive-software': {
+                    title: 'Título de Tecnólogo Superior en Desarrollo de Software',
+                    url: 'https://drive.google.com/file/d/16X_9WdHJ6bwEHc9QatE6IpBTQiQfrE71/preview'
+                },
+                'drive-mencion-software': {
+                    title: 'Certificado de Mención de Honor - Software',
+                    url: 'https://drive.google.com/file/d/TU_ID_DE_DRIVE_AQUÍ/preview'
+                },
+                'drive-eude': {
+                    title: 'Certificación Internacional EUDE',
+                    url: 'https://drive.google.com/file/d/TU_ID_DE_DRIVE_AQUÍ/preview'
+                },
+                'drive-redes': {
+                    title: 'Gestión de Redes y Telecomunicaciones (En curso)',
+                    url: 'https://drive.google.com/file/d/TU_ID_DE_DRIVE_AQUÍ/preview'
+                },
+                'drive-maestria': {
+                    title: 'Maestría Tecnológica (Próximamente)',
+                    url: 'https://drive.google.com/file/d/TU_ID_DE_DRIVE_AQUÍ/preview'
+                }
+            };
+
+            function openModal(docKey) {
+                const modal = document.getElementById('universalModal');
+                const iframe = document.getElementById('modalDriveFrame');
+                const titleElem = document.getElementById('modalTitle');
+                const externalLink = document.getElementById('modalDriveLink');
+
+                const docData = driveDocuments[docKey];
+
+                if (docData) {
+                    titleElem.textContent = docData.title;
+                    iframe.src = docData.url;
+                    externalLink.href = docData.url.replace('/preview', '/view'); // Enlace directo para abrir en pestaña nueva si lo desean
+                    
+                    modal.classList.add('active'); // Clase CSS para mostrar con animación
+                    document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+                }
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('universalModal');
+                const iframe = document.getElementById('modalDriveFrame');
+
+                modal.classList.remove('active');
+                iframe.src = ''; // Limpiamos el iframe para optimizar memoria y frenar carga de Drive
+                document.body.style.overflow = 'auto'; // Restaura el scroll
+            }
         </script>
     </body>
 </html>

@@ -34,6 +34,148 @@ a {
     text-decoration: none;
 }
 
+.temporal-color{
+    color: var(--clr-cyan-tech);
+}
+
+/* ==========================================================================
+   UTILIDAD GLOBAL REUTILIZABLE: Marca de Agua (Watermark)
+   ========================================================================== */
+.has-watermark {
+    position: relative;
+    overflow: hidden; /* Vital para que la imagen respete los bordes redondeados */
+}
+
+.has-watermark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+
+    /* Utiliza una variable CSS local que declararemos en cada elemento */
+    background-image: var(--watermark-img);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+    opacity: 0.18; /* Opacidad unificada o ajústala a tu gusto */
+    mix-blend-mode: screen; /* Funde el fondo blanco con el color oscuro limpiamente */
+}
+
+/* Garantiza que todo el contenido interno esté siempre por encima del fondo */
+.has-watermark > * {
+    position: relative;
+    z-index: 2;
+}
+
+/*========== UTILIDAD REUTILIZABLE: Efecto de Pulsación Tipo Botón ==========*/
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 15px rgba(0, 255, 102, 0.12); /* Sombra normal */
+        border-radius: 14px;
+    }
+    50% {
+        transform: translateY(1px) scale(0.99); /* Se hunde un poquito hacia adelante y baja */
+        box-shadow: 0 2px 6px rgba(0, 255, 102, 0.25); /* Sombra más compacta al presionarse */
+        border-radius: 14px;
+    }
+}
+
+.pulse-button-effect {
+    animation: buttonPulse 2.9s infinite ease-in-out;
+}
+
+/*========== ESTILOS DEL MODAL MAESTRO ==========*/
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Estado activo del modal (se activa desde JS) */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background-color: rgba(20, 20, 20, 0.95);
+    border: 1px solid var(--clr-neon-green, #00ff66);
+    box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: transparent;
+    border: none;
+    color: var(--clr-white, #fff);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: var(--clr-neon-green, #00ff66);
+}
+
+.modal-header h3 {
+    color: var(--clr-cyan-tech, #00ffff);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.modal-body {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--clr-neon-green);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-external-btn {
+    font-size: 0.85rem;
+    color: var(--clr-neon-green);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: opacity 0.2s ease;
+}
+
+.modal-external-btn:hover {
+    opacity: 0.8;
+}
+
 
 
 /* ==========================================================================
@@ -754,6 +896,8 @@ main {
     cursor: pointer;
     position: relative;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+    overflow: hidden; /* 🚀 Vital para que la imagen de fondo respete los bordes redondeados */
 }
 
 /* Parte superior: Icono y Textos */
@@ -887,6 +1031,13 @@ main {
 .project-card-link:hover .project-btn i { transform: translateX(4px); }
 
 /* ==========================================================================
+   VARIANTES DE PROYECTOS (Imágenes de fondo dedicadas en el CSS)
+   ========================================================================== */
+.project-card-link.bg-ecommerce {
+    --watermark-img: url('../img/LogoNexoForce.png'); /* Reemplaza con tu ruta real */
+}
+
+/* ==========================================================================
    7. SECCIÓN DE EDUCACIÓN (Arquitectura Escalable por Niveles Académicos)
    ========================================================================== */
 
@@ -989,52 +1140,56 @@ main {
     transition: all 0.3s ease;
 
     overflow: hidden; /* Vital para que la imagen respete los bordes redondeados */
+
 }
 
-/* Base del Watermark que cubre TODO el contenedor con fundido de opacidad */
-.timeline-content.has-watermark::after {
+
+
+/* --- EFECTO DE BRILLO DIAGONAL (HAZ DE LUZ) PARA LAS TARJETAS --- */
+@keyframes diagonalCardShine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(120deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(120deg);
+    }
+}
+
+/* Pseudo-elemento ::before libre para el haz de luz diagonal a 120° */
+.timeline-content::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        70deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 65%
+    );
     pointer-events: none;
-    z-index: 1;
-
-    /* 
-      1. Usamos tu variable de imagen.
-      2. Cubrimos todo el contenedor con 'cover'.
-      3. 'mix-blend-mode: screen;' hace que el fondo blanco de la imagen desaparezca 
-         y se funda de forma limpia con el color oscuro de tu tarjeta.
-    */
-    background-image: var(--watermark-img);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    
-    opacity: 0.18; /* Ajusta este valor si quieres que se note un poco más o menos */
-    mix-blend-mode: screen; /* Clave para eliminar el fondo blanco y que se vea integrado al fondo oscuro */
+    z-index: 2; /* Se ubica por encima de la marca de agua pero con transparencia sutil */
+    animation: diagonalCardShine 2s infinite ease-in-out;
 }
 
-/* Garantiza que todo el texto, fechas e insignias estén por encima del fondo */
-.timeline-content > * {
-    position: relative;
-    z-index: 2;
-}
+
 
 /* ==========================================================================
-   VARIANTES DE INSTITUCIONES (Solo cambian la imagen)
+   VARIANTES DE INSTITUCIONES (Sección Educación)
    ========================================================================== */
-.timeline-content.bg-tho::after {
-    background-image: url('../img/LogoFondoTHO.png');
+.timeline-content.bg-tho {
+    --watermark-img: url('../img/LogoFondoTHO.png');
 }
 
-.timeline-content.bg-tes::after {
-    background-image: url('../img/LogoFondoTESForce.png');
+.timeline-content.bg-tes {
+    --watermark-img: url('../img/LogoFondoTESDarkBlueForce.png');
 }
 
-.timeline-content.bg-Mgtr::after {
-    background-image: url('../img/LogoFondoTESRedForce.png');
+.timeline-content.bg-Mgtr {
+    --watermark-img: url('../img/LogoFondoTESRedForce.png');
 }
-
 
 /* --- INSIGNIAS ABSOLUTAS INTERACTIVAS --- */
 
@@ -1042,7 +1197,8 @@ main {
     position: absolute;
     top: 1.4rem;
     right: 1.6rem;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
+    /* Gradiente con el brillo integrado en el centro */
+    background: linear-gradient(135deg, #FFD700 60%, rgba(255, 255, 255, 0.7) 100%, #FFA500 0%);
     color: #1A1A1A;
     font-size: 0.7rem;
     font-weight: 800;
